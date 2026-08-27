@@ -47,7 +47,7 @@ export default function Header() {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Pesquisar"
-                        className="w-full bg-transparent text-sm placeholder:font-bold placeholder:text-neutral-500 focus:outline-none"
+                        className="w-full bg-transparent text-white text-sm placeholder:font-bold placeholder:text-neutral-500 focus:outline-none"
                     />
                 </div>
             </form>
