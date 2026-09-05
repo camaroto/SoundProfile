@@ -1,4 +1,4 @@
-export default function CriarContaPage() {
+export default function EntrarConta() {
 	return (
 		<main className="h-[calc(100vh-64px)] overflow-hidden">
 			<div
@@ -9,11 +9,11 @@ export default function CriarContaPage() {
 				<div className="absolute inset-0 bg-black/80"></div>
 
 				{/* Card */}
-				<div className="relative bg-neutral-900 w-100 h-[90vh] max-h-130 rounded-2xl px-8 pt-4 pb-8 flex flex-col justify-start">
+				<div className="relative bg-neutral-900 w-100 h-[50vh] max-h-130 rounded-2xl px-8 pt-4 pb-8 flex flex-col justify-start">
 
 					{/* Título */}
 					<h1 className="text-white text-xl font-bold text-center mb-8">
-						Cadastrar
+						Entrar
 					</h1>
 
 					{/* Formulário */}
@@ -34,27 +34,6 @@ export default function CriarContaPage() {
 								<input
 									type="text"
 									placeholder="Username"
-									className="w-full p-3 pl-11 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-purple-500"
-								/>
-							</div>
-						</div>
-
-						{/* E-mail */}
-						<div>
-							<label className="text-white block mb-2">
-								E-mail
-							</label>
-
-							<div className="relative">
-								<img
-									src="/email-svgrepo-com.svg"
-									alt=""
-									className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 brightness-0 invert"
-								/>
-
-								<input
-									type="email"
-									placeholder="E-mail"
 									className="w-full p-3 pl-11 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-purple-500"
 								/>
 							</div>
@@ -81,13 +60,13 @@ export default function CriarContaPage() {
 							</div>
 						</div>
 
-						<h1 className="text-white">Já tem uma conta? <a href="/login" className="text-violet-600 hover:text-violet-500">Entre aqui</a></h1>
+						<h1 className="text-white">Ainda não tem uma conta? <a href="/cadastro" className="text-violet-600 hover:text-violet-500">Cadastre-se</a></h1>
 
 						{/* Botão */}
 						<a href="/"
 							className="item-center justify-center flex w-full p-3 mt-4 rounded-lg bg-purple-600 text-white font-bold hover:bg-purple-500 transition"
 						>
-							Cadastrar
+							Entrar
 						</a>
 
 					</div>

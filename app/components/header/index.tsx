@@ -78,14 +78,14 @@ export default function Header() {
             {/* Ações */}
             <div className="flex shrink-0 items-center gap-3">
                 <a
-                    href="/entrar"
+                    href="/login"
                     className="rounded-xl text-white bg-neutral-700 px-4 py-1.5 text-sm font-medium transition hover:bg-neutral-600"
                 >
-                    Conecte-se
+                    Entre
                 </a>
                 <a
                     href="/cadastro"
-                    className="rounded-xl bg-accent-gradient px-4 py-1.5 text-sm font-semibold bg-violet-600 text-white shadow-[0_0_20px_-4px_rgba(139,63,251,0.7)] transition hover:bg-violet-500"
+                    className="rounded-xl bg-accent-gradient px-4 py-1.5 text-sm font-semibold bg-violet-600 text-white transition hover:bg-violet-500"
                 >
                     Inscreva-se
                 </a>
