@@ -79,13 +79,13 @@ export default function Header() {
             <div className="flex shrink-0 items-center gap-3">
                 <a
                     href="/entrar"
-                    className="rounded-full text-white bg-neutral-700 px-4 py-1.5 text-sm font-medium transition hover:bg-neutral-600"
+                    className="rounded-xl text-white bg-neutral-700 px-4 py-1.5 text-sm font-medium transition hover:bg-neutral-600"
                 >
                     Conecte-se
                 </a>
                 <a
                     href="/cadastro"
-                    className="rounded-full bg-accent-gradient px-4 py-1.5 text-sm font-semibold bg-violet-500 text-white shadow-[0_0_20px_-4px_rgba(139,63,251,0.7)] transition hover:brightness-110"
+                    className="rounded-xl bg-accent-gradient px-4 py-1.5 text-sm font-semibold bg-violet-600 text-white shadow-[0_0_20px_-4px_rgba(139,63,251,0.7)] transition hover:bg-violet-500"
                 >
                     Inscreva-se
                 </a>

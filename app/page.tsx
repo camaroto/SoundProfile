@@ -21,8 +21,8 @@ export default function Home() {
 
         <div className="flex items-center justify-center gap-4 mt-10">
           <a
-            href="/"
-            className="block w-fit mx-auto rounded-full bg-violet-500 px-6 py-2 text-sm font-semibold text-white shadow-[0_0_20px_-4px_rgba(139,63,251,0.7)] transition hover:brightness-110"
+            href="/cadastro"
+            className="block w-fit mx-auto rounded-xl bg-violet-600 px-12 py-4 text-base font-semibold text-white shadow-[0_0_20px_-4px_rgba(139,63,251,0.7)] transition hover:bg-violet-500"
           >
             Crie seu perfil
           </a>
