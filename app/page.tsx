@@ -4,6 +4,7 @@ export default function Home() {
       className="min-h-screen bg-cover bg-center relative"
       style={{ backgroundImage: "url('/background-home.png')" }}
     >
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/80 z-0"></div>
 
@@ -71,7 +72,6 @@ export default function Home() {
             <p className="text-black font-bold text-lg">Nome do usuário <br /> <p className="text-black font-normal text-sm">@do_usuario</p></p>
           </div>
 
-
         </div>
 
         <div className="flex justify-center items-center flex-wrap text-white">
@@ -83,108 +83,392 @@ export default function Home() {
         </div>
 
 
-        <div className="bg-neutral-900 h-[600px] mt-10 px-50">
-        <div className="w-max-screen h-1 bg-violet-900"></div>
+        <div className="bg-neutral-900 h-auto mt-10 px-50">
+          <div className="w-max-screen h-1 bg-violet-900"></div>
 
           <div className="flex items-center gap-2 p-10">
-          <div className="w-1 h-8 bg-violet-600 rounded-full"></div>
+            <div className="w-1 h-8 bg-violet-600 rounded-full"></div>
 
-          <h1 className="text-white text-xl p-10">
-            Álbuns em alta
-          </h1>
+            <h1 className="text-white text-xl p-10">
+              Álbuns em alta
+            </h1>
           </div>
 
           {/* rolangem horizontal*/}
           <div className="px-22 flex gap-30 overflow-x-auto pb-4 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-neutral-900 [&::-webkit-scrollbar-thumb]:bg-violet-600 [&::-webkit-scrollbar-thumb]:rounded-full">
-          
-          {/* album 1*/}
-          <div className="flex-shrink-0 w-50 text-center">
-            <img 
-            src="albums/album1.jpg" 
-            className="w-auto h-60 object-cover rounded-lg"
-            />
-            <h2 className="text-white text-sm font-bold mt-2">
-              Significant Other
-            </h2>
-            <p className="text-gray-400 text-sm">
-              Limp Bizkit
-            </p>
-          </div>
-          
-          {/* album 2*/}
-          <div className="flex-shrink-0 w-50 text-center">
-            <img 
-            src="albums/clint.jfif" 
-            className="w-50 h-60 object-cover rounded-lg"
-            />
-            <h2 className="text-white text-sm font-bold mt-2">
-              Clint Eastwood
-            </h2>
-            <p className="text-gray-400 text-sm">
-              Gorillaz
-            </p>
-          </div>
-         
-          {/* album 3*/}
-          <div className="flex-shrink-0 w-50 text-center">
-            <img 
-            src="albums/diamond-eyes.avif" 
-            className="w-50 h-60 object-cover rounded-lg"
-            />
-            <h2 className="text-white text-sm font-bold mt-2">
-              Diamond Eyes
-            </h2>
-            <p className="text-gray-400 text-sm">
-              Deftones
-            </p>
-          </div>
-         
-          {/* album 4*/}
-          <div className="flex-shrink-0 w-50 text-center">
-            <img 
-            src="albums/dollarbill.jfif" 
-            className="w-50 h-60 object-cover rounded-lg"
-            />
-            <h2 className="text-white text-sm font-bold mt-2">
-              Three Dollar Bill
-            </h2>
-            <p className="text-gray-400 text-sm">
-              Limp Bizkit
-            </p>
-          </div>
-         
-          {/* album 5*/}
-          <div className="flex-shrink-0 w-50 text-center">
-            <img 
-            src="albums/vulgar.jpg" 
-            className="w-50 h-60 object-cover rounded-lg"
-            />
-            <h2 className="text-white text-sm font-bold mt-2">
-              Vulgar Display of Power
-            </h2>
-            <p className="text-gray-400 text-sm">
-              Pantera
-            </p>
-          </div>
-         
-          {/* album 6*/}
-          <div className="flex-shrink-0 w-50 text-center">
-            <img 
-            src="albums/darkside.png" 
-            className="w-50 h-60 object-cover rounded-lg"
-            />
-            <h2 className="text-white text-sm font-bold mt-2">
-              The Dark Side of The Moon
-            </h2>
-            <p className="text-gray-400 text-sm">
-              Pìnk Floyd
-            </p>
-          </div>
+
+            {/* album 1*/}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/album1.jpg"
+                className="w-auto h-60 object-cover rounded-lg"
+              />
+              <h2 className="text-white text-sm font-bold mt-2">
+                Significant Other
+              </h2>
+              <p className="text-gray-400 text-sm">
+                Limp Bizkit
+              </p>
+            </div>
+
+            {/* album 2*/}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/clint.jfif"
+                className="w-50 h-60 object-cover rounded-lg"
+              />
+              <h2 className="text-white text-sm font-bold mt-2">
+                Clint Eastwood
+              </h2>
+              <p className="text-gray-400 text-sm">
+                Gorillaz
+              </p>
+            </div>
+
+            {/* album 3*/}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/diamond-eyes.avif"
+                className="w-50 h-60 object-cover rounded-lg"
+              />
+              <h2 className="text-white text-sm font-bold mt-2">
+                Diamond Eyes
+              </h2>
+              <p className="text-gray-400 text-sm">
+                Deftones
+              </p>
+            </div>
+
+            {/* album 4*/}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/dollarbill.jfif"
+                className="w-50 h-60 object-cover rounded-lg"
+              />
+              <h2 className="text-white text-sm font-bold mt-2">
+                Three Dollar Bill
+              </h2>
+              <p className="text-gray-400 text-sm">
+                Limp Bizkit
+              </p>
+            </div>
+
+            {/* album 5*/}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/vulgar.jpg"
+                className="w-50 h-60 object-cover rounded-lg"
+              />
+              <h2 className="text-white text-sm font-bold mt-2">
+                Vulgar Display of Power
+              </h2>
+              <p className="text-gray-400 text-sm">
+                Pantera
+              </p>
+            </div>
+
+            {/* album 6*/}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/darkside.png"
+                className="w-50 h-60 object-cover rounded-lg"
+              />
+              <h2 className="text-white text-sm font-bold mt-2">
+                The Dark Side of The Moon
+              </h2>
+              <p className="text-gray-400 text-sm">
+                Pìnk Floyd
+              </p>
+            </div>
 
           </div>
+        </div>
+
+        {/* reviews em destaque */}
+
+        <div className="bg-neutral-900 h-auto px-50">
+
+          <div className="flex items-center gap-2 p-10">
+            <div className="w-1 h-8 bg-violet-600 rounded-full"></div>
+
+            <h1 className="text-white text-xl p-10">
+              Reviews em Destaque
+            </h1>
           </div>
 
+          {/* review 1 */}
+          <div className="flex flex-wrap">
+          <div className="flex flex-wrap">
+            <div className="flex items-center w-150 h-60 p-10">
+
+              {/* capa album */}
+              <img src="/albums/clint.jfif"
+                className="w-40 h-40 object-cover rounded-lg"
+              />
+
+              <div className="ml-5 flex flex-col h-40 flex-1">
+
+                {/* usuario + estrelas */}
+                <div className="flex items-center">
+
+                  {/* pfp */}
+                  <img src="gato.jpg"
+                    className="w-12 h-12 rounded-full mr-3 border border-violet-900"
+                  />
+
+                  <div className="flex flex-col">
+                    {/* nome */}
+                    <h1 className="text-white text-xl font-bold">
+                      Kuramoto
+                    </h1>
+
+                    {/* estrelas */}
+                    <div className="flex gap-1">
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* comentario */}
+                <p className="text-gray-300 text-sm mt-3">
+                  "See You Again" mistura romantismo e melancolia de um jeito leve e
+                  sonhador. A música fala sobre alguém que ocupa tanto espaço na mente
+                  que acaba aparecendo até nos sonhos.
+                </p>
+
+                {/* botoes */}
+                <div className="flex items-center gap-5 mt-auto">
+                  {/* curtir */}
+                  <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
+                    ♡
+                    <span>3</span>
+                  </button>
+
+                  {/* comentar */}
+                  <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
+                    💬
+                  <span>6</span>
+                  </button>
+
+                  {/* abrir review */}
+                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
+                    Abrir review →
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          {/* review 2 */}
+          <div className="flex flex-wrap">
+            <div className="flex items-center w-150 h-60 p-10">
+
+              {/* capa album */}
+              <img src="/albums/clint.jfif"
+                className="w-40 h-40 object-cover rounded-lg"
+              />
+
+              <div className="ml-5 flex flex-col h-40 flex-1">
+
+                {/* usuario + estrelas */}
+                <div className="flex items-center">
+
+                  {/* pfp */}
+                  <img src="gato.jpg"
+                    className="w-12 h-12 rounded-full mr-3 border border-violet-900"
+                  />
+
+                  <div className="flex flex-col">
+                    {/* nome */}
+                    <h1 className="text-white text-xl font-bold">
+                      Kuramoto
+                    </h1>
+
+                    {/* estrelas */}
+                    <div className="flex gap-1">
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* comentario */}
+                <p className="text-gray-300 text-sm mt-3">
+                  "See You Again" mistura romantismo e melancolia de um jeito leve e
+                  sonhador. A música fala sobre alguém que ocupa tanto espaço na mente
+                  que acaba aparecendo até nos sonhos.
+                </p>
+
+                {/* botoes */}
+                <div className="flex items-center gap-5 mt-auto">
+                  {/* curtir */}
+                  <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
+                    ♡
+                    <span>3</span>
+                  </button>
+
+                  {/* comentar */}
+                  <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
+                    💬
+                  <span>6</span>
+                  </button>
+
+                  {/* abrir review */}
+                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
+                    Abrir review →
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {/* review 2 */}
+          <div className="flex flex-wrap">
+            <div className="flex items-center w-150 h-60 p-10">
+
+              {/* capa album */}
+              <img src="/albums/clint.jfif"
+                className="w-40 h-40 object-cover rounded-lg"
+              />
+
+              <div className="ml-5 flex flex-col h-40 flex-1">
+
+                {/* usuario + estrelas */}
+                <div className="flex items-center">
+
+                  {/* pfp */}
+                  <img src="gato.jpg"
+                    className="w-12 h-12 rounded-full mr-3 border border-violet-900"
+                  />
+
+                  <div className="flex flex-col">
+                    {/* nome */}
+                    <h1 className="text-white text-xl font-bold">
+                      Kuramoto
+                    </h1>
+
+                    {/* estrelas */}
+                    <div className="flex gap-1">
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* comentario */}
+                <p className="text-gray-300 text-sm mt-3">
+                  "See You Again" mistura romantismo e melancolia de um jeito leve e
+                  sonhador. A música fala sobre alguém que ocupa tanto espaço na mente
+                  que acaba aparecendo até nos sonhos.
+                </p>
+
+                {/* botoes */}
+                <div className="flex items-center gap-5 mt-auto">
+                  {/* curtir */}
+                  <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
+                    ♡
+                    <span>3</span>
+                  </button>
+
+                  {/* comentar */}
+                  <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
+                    💬
+                  <span>6</span>
+                  </button>
+
+                  {/* abrir review */}
+                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
+                    Abrir review →
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {/* review 2 */}
+          <div className="flex flex-wrap">
+            <div className="flex items-center w-150 h-60 p-10">
+
+              {/* capa album */}
+              <img src="/albums/clint.jfif"
+                className="w-40 h-40 object-cover rounded-lg"
+              />
+
+              <div className="ml-5 flex flex-col h-40 flex-1">
+
+                {/* usuario + estrelas */}
+                <div className="flex items-center">
+
+                  {/* pfp */}
+                  <img src="gato.jpg"
+                    className="w-12 h-12 rounded-full mr-3 border border-violet-900"
+                  />
+
+                  <div className="flex flex-col">
+                    {/* nome */}
+                    <h1 className="text-white text-xl font-bold">
+                      Kuramoto
+                    </h1>
+
+                    {/* estrelas */}
+                    <div className="flex gap-1">
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                      <img src="disco-ouro.png" className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* comentario */}
+                <p className="text-gray-300 text-sm mt-3">
+                  "See You Again" mistura romantismo e melancolia de um jeito leve e
+                  sonhador. A música fala sobre alguém que ocupa tanto espaço na mente
+                  que acaba aparecendo até nos sonhos.
+                </p>
+
+                {/* botoes */}
+                <div className="flex items-center gap-5 mt-auto">
+                  {/* curtir */}
+                  <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
+                    ♡
+                    <span>3</span>
+                  </button>
+
+                  {/* comentar */}
+                  <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
+                    💬
+                  <span>6</span>
+                  </button>
+
+                  {/* abrir review */}
+                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
+                    Abrir review →
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+</div>
     </div>
   );
 }
