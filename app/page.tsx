@@ -196,33 +196,32 @@ export default function Home() {
             </h1>
           </div>
 
-          {/* review 1 */}
-          <div className="flex flex-wrap">
-          <div className="flex flex-wrap">
-            <div className="flex items-center w-150 h-60 p-10">
+          {/* reviews */}
+          <div className="grid grid-cols-2 gap-x-10 gap-y-6 pb-10">
 
-              {/* capa album */}
-              <img src="/albums/clint.jfif"
+            {/* review 1 */}
+            <div className="flex items-center w-full h-60 p-10">
+
+              <img
+                src="/albums/album1.jpg"
                 className="w-40 h-40 object-cover rounded-lg"
               />
+              <img src="meio-disco.png" />
 
               <div className="ml-5 flex flex-col h-40 flex-1">
 
-                {/* usuario + estrelas */}
                 <div className="flex items-center">
 
-                  {/* pfp */}
-                  <img src="gato.jpg"
+                  <img
+                    src="gato.jpg"
                     className="w-12 h-12 rounded-full mr-3 border border-violet-900"
                   />
 
                   <div className="flex flex-col">
-                    {/* nome */}
                     <h1 className="text-white text-xl font-bold">
                       Kuramoto
                     </h1>
 
-                    {/* estrelas */}
                     <div className="flex gap-1">
                       <img src="disco-ouro.png" className="w-5 h-5" />
                       <img src="disco-ouro.png" className="w-5 h-5" />
@@ -234,28 +233,23 @@ export default function Home() {
 
                 </div>
 
-                {/* comentario */}
                 <p className="text-gray-300 text-sm mt-3">
                   "See You Again" mistura romantismo e melancolia de um jeito leve e
                   sonhador. A música fala sobre alguém que ocupa tanto espaço na mente
                   que acaba aparecendo até nos sonhos.
                 </p>
 
-                {/* botoes */}
                 <div className="flex items-center gap-5 mt-auto">
-                  {/* curtir */}
                   <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
                     ♡
                     <span>3</span>
                   </button>
 
-                  {/* comentar */}
                   <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
                     💬
-                  <span>6</span>
+                    <span>6</span>
                   </button>
 
-                  {/* abrir review */}
                   <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
                     Abrir review →
                   </button>
@@ -263,34 +257,28 @@ export default function Home() {
 
               </div>
             </div>
-          </div>
 
-          {/* review 2 */}
-          <div className="flex flex-wrap">
-            <div className="flex items-center w-150 h-60 p-10">
-
-              {/* capa album */}
-              <img src="/albums/clint.jfif"
-                className="w-40 h-40 object-cover rounded-lg"
-              />
+            {/* review 2 */}
+            <div className="flex items-center w-full h-60 p-10"><img
+              src="/albums/darkside.png"
+              className="w-40 h-40 object-cover rounded-lg"
+            />
+              <img src="meio-disco.png" />
 
               <div className="ml-5 flex flex-col h-40 flex-1">
 
-                {/* usuario + estrelas */}
                 <div className="flex items-center">
 
-                  {/* pfp */}
-                  <img src="gato.jpg"
+                  <img
+                    src="gato.jpg"
                     className="w-12 h-12 rounded-full mr-3 border border-violet-900"
                   />
 
                   <div className="flex flex-col">
-                    {/* nome */}
                     <h1 className="text-white text-xl font-bold">
                       Kuramoto
                     </h1>
 
-                    {/* estrelas */}
                     <div className="flex gap-1">
                       <img src="disco-ouro.png" className="w-5 h-5" />
                       <img src="disco-ouro.png" className="w-5 h-5" />
@@ -302,28 +290,23 @@ export default function Home() {
 
                 </div>
 
-                {/* comentario */}
                 <p className="text-gray-300 text-sm mt-3">
                   "See You Again" mistura romantismo e melancolia de um jeito leve e
                   sonhador. A música fala sobre alguém que ocupa tanto espaço na mente
                   que acaba aparecendo até nos sonhos.
                 </p>
 
-                {/* botoes */}
                 <div className="flex items-center gap-5 mt-auto">
-                  {/* curtir */}
                   <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
                     ♡
                     <span>3</span>
                   </button>
 
-                  {/* comentar */}
                   <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
                     💬
-                  <span>6</span>
+                    <span>6</span>
                   </button>
 
-                  {/* abrir review */}
                   <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
                     Abrir review →
                   </button>
@@ -331,33 +314,29 @@ export default function Home() {
 
               </div>
             </div>
-          </div>
-          {/* review 2 */}
-          <div className="flex flex-wrap">
-            <div className="flex items-center w-150 h-60 p-10">
 
-              {/* capa album */}
-              <img src="/albums/clint.jfif"
+            {/* review 3 */}
+            <div className="flex items-center w-full h-60 p-10">
+              <img
+                src="/albums/diamond-eyes.avif"
                 className="w-40 h-40 object-cover rounded-lg"
               />
+              <img src="meio-disco.png" />
 
               <div className="ml-5 flex flex-col h-40 flex-1">
 
-                {/* usuario + estrelas */}
                 <div className="flex items-center">
 
-                  {/* pfp */}
-                  <img src="gato.jpg"
+                  <img
+                    src="gato.jpg"
                     className="w-12 h-12 rounded-full mr-3 border border-violet-900"
                   />
 
                   <div className="flex flex-col">
-                    {/* nome */}
                     <h1 className="text-white text-xl font-bold">
                       Kuramoto
                     </h1>
 
-                    {/* estrelas */}
                     <div className="flex gap-1">
                       <img src="disco-ouro.png" className="w-5 h-5" />
                       <img src="disco-ouro.png" className="w-5 h-5" />
@@ -369,28 +348,23 @@ export default function Home() {
 
                 </div>
 
-                {/* comentario */}
                 <p className="text-gray-300 text-sm mt-3">
                   "See You Again" mistura romantismo e melancolia de um jeito leve e
                   sonhador. A música fala sobre alguém que ocupa tanto espaço na mente
                   que acaba aparecendo até nos sonhos.
                 </p>
 
-                {/* botoes */}
                 <div className="flex items-center gap-5 mt-auto">
-                  {/* curtir */}
                   <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
                     ♡
                     <span>3</span>
                   </button>
 
-                  {/* comentar */}
                   <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
                     💬
-                  <span>6</span>
+                    <span>6</span>
                   </button>
 
-                  {/* abrir review */}
                   <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
                     Abrir review →
                   </button>
@@ -398,33 +372,29 @@ export default function Home() {
 
               </div>
             </div>
-          </div>
-          {/* review 2 */}
-          <div className="flex flex-wrap">
-            <div className="flex items-center w-150 h-60 p-10">
 
-              {/* capa album */}
-              <img src="/albums/clint.jfif"
+            {/* review 4 */}
+            <div className="flex items-center w-full h-60 p-10">
+              <img
+                src="/albums/clint.jfif"
                 className="w-40 h-40 object-cover rounded-lg"
               />
+              <img src="meio-disco.png" />
 
               <div className="ml-5 flex flex-col h-40 flex-1">
 
-                {/* usuario + estrelas */}
                 <div className="flex items-center">
 
-                  {/* pfp */}
-                  <img src="gato.jpg"
+                  <img
+                    src="gato.jpg"
                     className="w-12 h-12 rounded-full mr-3 border border-violet-900"
                   />
 
                   <div className="flex flex-col">
-                    {/* nome */}
                     <h1 className="text-white text-xl font-bold">
                       Kuramoto
                     </h1>
 
-                    {/* estrelas */}
                     <div className="flex gap-1">
                       <img src="disco-ouro.png" className="w-5 h-5" />
                       <img src="disco-ouro.png" className="w-5 h-5" />
@@ -436,39 +406,65 @@ export default function Home() {
 
                 </div>
 
-                {/* comentario */}
                 <p className="text-gray-300 text-sm mt-3">
                   "See You Again" mistura romantismo e melancolia de um jeito leve e
                   sonhador. A música fala sobre alguém que ocupa tanto espaço na mente
                   que acaba aparecendo até nos sonhos.
                 </p>
 
-                {/* botoes */}
                 <div className="flex items-center gap-5 mt-auto">
-                  {/* curtir */}
                   <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
                     ♡
                     <span>3</span>
                   </button>
 
-                  {/* comentar */}
                   <button className="flex items-center gap-2 text-gray-300 hover:text-violet-500">
                     💬
-                  <span>6</span>
+                    <span>6</span>
                   </button>
 
-                  {/* abrir review */}
                   <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
                     Abrir review →
                   </button>
-                </div>
 
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div className="bg-neutral-900 h-auto px-50">
+
+          <div className="flex items-center gap-2 p-10">
+            <div className="w-1 h-8 bg-violet-600 rounded-full"></div>
+
+            <h1 className="p-10 text-white text-xl ml-2">
+              Artistas em Alta
+            </h1>
+          </div>
+
+          {/* rolagem horizontal */}
+          <div className="px-22 flex gap-30 overflow-x-auto pb-4 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-neutral-900 [&::-webkit-scrollbar-thumb]:bg-violet-600 [&::-webkit-scrollbar-thumb]:rounded-full">
+
+            {/* artista 1 */}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/album1.jpg"
+                className="w-auto h-60 object-cover rounded-lg"
+              />
+
+              <h2 className="text-white text-sm font-bold mt-2">
+                Significant Other
+              </h2>
+
+              <p className="text-gray-400 text-sm">
+                Limp Bizkit
+              </p>
+            </div>
+
+          </div>
+        </div>
       </div>
-</div>
     </div>
   );
 }
