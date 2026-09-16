@@ -24,7 +24,7 @@ export default function Home() {
         <div className="flex items-center justify-center gap-4 mt-10">
           <a
             href="/cadastro"
-            className="block w-fit mx-auto rounded-xl bg-violet-600 px-12 py-4 text-base font-semibold text-white shadow-[0_0_20px_-4px_rgba(139,63,251,0.7)] transition hover:bg-violet-500"
+            className="block w-fit mx-auto rounded-xl bg-violet-600 px-12 py-4 text-base font-semibold text-white transition hover:bg-violet-500"
           >
             Crie seu perfil
           </a>
@@ -250,7 +250,7 @@ export default function Home() {
                     <span>6</span>
                   </button>
 
-                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
+                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400 cursor-pointer">
                     Abrir review →
                   </button>
                 </div>
@@ -307,7 +307,7 @@ export default function Home() {
                     <span>6</span>
                   </button>
 
-                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
+                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400 cursor-pointer">
                     Abrir review →
                   </button>
                 </div>
@@ -365,7 +365,7 @@ export default function Home() {
                     <span>6</span>
                   </button>
 
-                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
+                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400 cursor-pointer">
                     Abrir review →
                   </button>
                 </div>
@@ -423,7 +423,7 @@ export default function Home() {
                     <span>6</span>
                   </button>
 
-                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400">
+                  <button className="ml-auto text-violet-500 font-bold hover:text-violet-400 cursor-pointer">
                     Abrir review →
                   </button>
 
@@ -460,6 +460,443 @@ export default function Home() {
               <p className="text-gray-400 text-sm">
                 Limp Bizkit
               </p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-neutral-900 h-auto px-50 py-10">
+
+          {/* título */}
+          <div className="flex items-center gap-2 p-10">
+            <div className="w-1 h-8 bg-violet-600 rounded-full"></div>
+
+            <h1 className="text-white text-xl p-10">
+              Descobertas
+            </h1>
+          </div>
+
+          {/* colunas */}
+          <div className="grid grid-cols-3 gap-30 px-22 pb-10">
+
+            {/* Em breve */}
+            <div className="w-full">
+
+              <h2 className="text-white text-lg font-bold mb-8">
+                Em breve
+              </h2>
+
+              <div className="flex flex-col gap-6">
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Pink Floyd
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Deftones
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Black Sabbath
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Deftones
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            {/* Mais aguardados */}
+            <div className="w-full">
+
+              <h2 className="text-white text-lg font-bold mb-8">
+                Mais aguardados
+              </h2>
+
+              <div className="flex flex-col gap-6">
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Deftones
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Metallica
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Nirvana
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Nirvana
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            {/* Joias escondidas */}
+            <div className="w-full">
+
+              <h2 className="text-white text-lg font-bold mb-8">
+                Joias escondidas
+              </h2>
+
+              <div className="flex flex-col gap-6">
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Pink Floyd
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Pantera
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Radiohead
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-20 h-24 bg-neutral-950 rounded-lg flex-shrink-0"></div>
+
+                  <div className="ml-5">
+                    <h3 className="text-white text-sm font-bold">
+                      Deftones
+                    </h3>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      05 DE JUN
+                    </p>
+
+                    <div className="flex gap-1 mt-2">
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                      <img
+                        src="/disco-ouro.png"
+                        alt="Disco de ouro"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
           </div>
