@@ -461,6 +461,70 @@ export default function Home() {
                 Limp Bizkit
               </p>
             </div>
+
+            {/* ARTISTA 2 */}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/album1.jpg"
+                className="w-auto h-60 object-cover rounded-lg"
+              />
+
+              <h2 className="text-white text-sm font-bold mt-2">
+                Significant Other
+              </h2>
+
+              <p className="text-gray-400 text-sm">
+                Limp Bizkit
+              </p>
+            </div>
+
+            {/* ARTISTA 3 */}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/album1.jpg"
+                className="w-auto h-60 object-cover rounded-lg"
+              />
+
+              <h2 className="text-white text-sm font-bold mt-2">
+                Significant Other
+              </h2>
+
+              <p className="text-gray-400 text-sm">
+                Limp Bizkit
+              </p>
+            </div>
+            
+            {/* ARTISTA 4 */}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/album1.jpg"
+                className="w-auto h-60 object-cover rounded-lg"
+              />
+
+              <h2 className="text-white text-sm font-bold mt-2">
+                Significant Other
+              </h2>
+
+              <p className="text-gray-400 text-sm">
+                Limp Bizkit
+              </p>
+            </div>
+
+            {/* ARTISTA 5 */}
+            <div className="flex-shrink-0 w-50 text-center">
+              <img
+                src="albums/album1.jpg"
+                className="w-auto h-60 object-cover rounded-lg"
+              />
+
+              <h2 className="text-white text-sm font-bold mt-2">
+                Significant Other
+              </h2>
+
+              <p className="text-gray-400 text-sm">
+                Limp Bizkit
+              </p>
+            </div>
           </div>
         </div>
         <div className="bg-neutral-900 h-auto px-50 py-10">
