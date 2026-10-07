@@ -212,7 +212,7 @@ export default function MembrosPage() {
 
 
                     {/* LATERAL DIREITA */}
-                    <div className="flex flex-col gap-10 pt-16">
+                    <div className="flex flex-col gap-10 pt-14">
 
 
                         {/* AVALIAÇÕES */}
