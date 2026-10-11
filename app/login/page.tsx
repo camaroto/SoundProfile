@@ -1,47 +1,65 @@
 export default function EntrarConta() {
 	return (
-		<main className="h-[calc(100vh-64px)] overflow-hidden">
+		<main className="min-h-[calc(100vh-64px)]">
 			<div
-				className="h-full flex items-center justify-center bg-cover bg-center relative"
+				className="relative flex min-h-[calc(100vh-64px)] items-center justify-center bg-cover bg-center px-4 py-8"
 				style={{ backgroundImage: "url('/background-home.png')" }}
 			>
 				{/* Fundo escuro */}
-				<div className="absolute inset-0 bg-black/80"></div>
+				<div className="absolute inset-0 bg-black/80" />
 
 				{/* Card */}
-				<div className="relative bg-neutral-900 w-100 h-[50vh] max-h-130 rounded-2xl px-8 pt-4 pb-8 flex flex-col justify-start">
+				<div className="relative z-10 w-full max-w-md rounded-2xl border border-white/10 bg-neutral-900/95 px-6 py-8 shadow-2xl sm:px-8">
 
 					{/* Título */}
-					<h1 className="text-white text-xl font-bold text-center mb-8">
-						Entrar
-					</h1>
+					<div className="mb-8 text-center">
+						<h1 className="text-2xl font-bold text-white">
+							Entrar
+						</h1>
+
+						<p className="mt-2 text-sm text-neutral-400">
+							Entre na sua conta do SoundProfile
+						</p>
+					</div>
 
 					{/* Formulário */}
-					<div className="flex flex-col gap-5">
+					<form action="/" method="get" className="flex flex-col gap-5">
 
+						{/* Nome */}
 						<div>
-							<label className="text-white block mb-2">
-								Nome
+							<label
+								htmlFor="username"
+								className="mb-2 block text-sm font-medium text-white"
+							>
+								Nome de usuário
 							</label>
 
 							<div className="relative">
 								<img
 									src="/headphone-svgrepo-com.svg"
 									alt=""
-									className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 brightness-0 invert"
+									aria-hidden="true"
+									className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 brightness-0 invert"
 								/>
 
 								<input
+									id="username"
+									name="username"
 									type="text"
-									placeholder="Username"
-									className="w-full p-3 pl-11 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-purple-500"
+									placeholder="Digite seu username"
+									autoComplete="username"
+									required
+									className="w-full rounded-lg border border-white/10 bg-neutral-800 p-3 pl-11 text-white outline-none transition placeholder:text-neutral-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30"
 								/>
 							</div>
 						</div>
 
 						{/* Senha */}
 						<div>
-							<label className="text-white block mb-2">
+							<label
+								htmlFor="password"
+								className="mb-2 block text-sm font-medium text-white"
+							>
 								Senha
 							</label>
 
@@ -49,28 +67,42 @@ export default function EntrarConta() {
 								<img
 									src="/locked-svgrepo-com.svg"
 									alt=""
-									className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 brightness-0 invert"
+									aria-hidden="true"
+									className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 brightness-0 invert"
 								/>
 
 								<input
+									id="password"
+									name="password"
 									type="password"
-									placeholder="Senha"
-									className="w-full p-3 pl-11 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-purple-500"
+									placeholder="Digite sua senha"
+									autoComplete="current-password"
+									required
+									className="w-full rounded-lg border border-white/10 bg-neutral-800 p-3 pl-11 text-white outline-none transition placeholder:text-neutral-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30"
 								/>
 							</div>
 						</div>
 
-						<h1 className="text-white">Ainda não tem uma conta? <a href="/cadastro" className="text-violet-600 hover:text-violet-500">Cadastre-se</a></h1>
+						{/* Cadastro */}
+						<p className="text-center text-sm text-neutral-400">
+							Ainda não tem uma conta?{" "}
+							<a
+								href="/cadastro"
+								className="font-semibold text-violet-400 transition hover:text-violet-300"
+							>
+								Cadastre-se
+							</a>
+						</p>
 
 						{/* Botão */}
-						<a href="/"
-							className="item-center justify-center flex w-full p-3 mt-4 rounded-lg bg-purple-600 text-white font-bold hover:bg-purple-500 transition"
+						<button
+							type="submit"
+							className="mt-2 w-full rounded-lg bg-purple-600 p-3 font-bold text-white transition hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-neutral-900"
 						>
 							Entrar
-						</a>
+						</button>
 
-					</div>
-
+					</form>
 				</div>
 			</div>
 		</main>

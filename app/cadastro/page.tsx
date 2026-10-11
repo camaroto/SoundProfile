@@ -1,99 +1,144 @@
 export default function CriarContaPage() {
-	return (
-		<main className="h-[calc(100vh-64px)] overflow-hidden">
-			<div
-				className="h-full flex items-center justify-center bg-cover bg-center relative"
-				style={{ backgroundImage: "url('/background-home.png')" }}
-			>
-				{/* Fundo escuro */}
-				<div className="absolute inset-0 bg-black/80"></div>
+    return (
+        <main className="min-h-[calc(100vh-64px)]">
+            <div
+                className="relative flex min-h-[calc(100vh-64px)] items-center justify-center bg-cover bg-center px-4 py-8"
+                style={{ backgroundImage: "url('/background-home.png')" }}
+            >
+                {/* Fundo escuro */}
+                <div className="absolute inset-0 bg-black/80" />
 
-				{/* Card */}
-				<div className="relative bg-neutral-900 w-100 h-[90vh] max-h-130 rounded-2xl px-8 pt-4 pb-8 flex flex-col justify-start">
+                {/* Card */}
+                <div className="relative z-10 w-full max-w-md rounded-2xl border border-white/10 bg-neutral-900/95 px-6 py-8 shadow-2xl sm:px-8">
 
-					{/* Título */}
-					<h1 className="text-white text-xl font-bold text-center mb-8">
-						Cadastrar
-					</h1>
+                    {/* Título */}
+                    <div className="mb-8 text-center">
+                        <h1 className="text-2xl font-bold text-white">
+                            Criar conta
+                        </h1>
 
-					{/* Formulário */}
-					<div className="flex flex-col gap-5">
+                        <p className="mt-2 text-sm text-neutral-400">
+                            Faça parte da comunidade SoundProfile
+                        </p>
+                    </div>
 
-						<div>
-							<label className="text-white block mb-2">
-								Nome
-							</label>
+                    {/* Formulário */}
+                    <form action="/" method="get" className="flex flex-col gap-5">
 
-							<div className="relative">
-								<img
-									src="/headphone-svgrepo-com.svg"
-									alt=""
-									className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 brightness-0 invert"
-								/>
+                        {/* Nome */}
+                        <div>
+                            <label
+                                htmlFor="username"
+                                className="mb-2 block text-sm font-medium text-white"
+                            >
+                                Nome de usuário
+                            </label>
 
-								<input
-									type="text"
-									placeholder="Username"
-									className="w-full p-3 pl-11 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-purple-500"
-								/>
-							</div>
-						</div>
+                            <div className="relative">
+                                <img
+                                    src="/headphone-svgrepo-com.svg"
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 brightness-0 invert"
+                                />
 
-						{/* E-mail */}
-						<div>
-							<label className="text-white block mb-2">
-								E-mail
-							</label>
+                                <input
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    placeholder="Escolha seu username"
+                                    autoComplete="username"
+                                    required
+                                    className="w-full rounded-lg border border-white/10 bg-neutral-800 p-3 pl-11 text-white outline-none transition placeholder:text-neutral-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30"
+                                />
+                            </div>
+                        </div>
 
-							<div className="relative">
-								<img
-									src="/email-svgrepo-com.svg"
-									alt=""
-									className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 brightness-0 invert"
-								/>
+                        {/* E-mail */}
+                        <div>
+                            <label
+                                htmlFor="email"
+                                className="mb-2 block text-sm font-medium text-white"
+                            >
+                                E-mail
+                            </label>
 
-								<input
-									type="email"
-									placeholder="E-mail"
-									className="w-full p-3 pl-11 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-purple-500"
-								/>
-							</div>
-						</div>
+                            <div className="relative">
+                                <img
+                                    src="/email-svgrepo-com.svg"
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 brightness-0 invert"
+                                />
 
-						{/* Senha */}
-						<div>
-							<label className="text-white block mb-2">
-								Senha
-							</label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    placeholder="Digite seu e-mail"
+                                    autoComplete="email"
+                                    required
+                                    className="w-full rounded-lg border border-white/10 bg-neutral-800 p-3 pl-11 text-white outline-none transition placeholder:text-neutral-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30"
+                                />
+                            </div>
+                        </div>
 
-							<div className="relative">
-								<img
-									src="/locked-svgrepo-com.svg"
-									alt=""
-									className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 brightness-0 invert"
-								/>
+                        {/* Senha */}
+                        <div>
+                            <label
+                                htmlFor="password"
+                                className="mb-2 block text-sm font-medium text-white"
+                            >
+                                Senha
+                            </label>
 
-								<input
-									type="password"
-									placeholder="Senha"
-									className="w-full p-3 pl-11 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-purple-500"
-								/>
-							</div>
-						</div>
+                            <div className="relative">
+                                <img
+                                    src="/locked-svgrepo-com.svg"
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 brightness-0 invert"
+                                />
 
-						<h1 className="text-white">Já tem uma conta? <a href="/login" className="text-violet-600 hover:text-violet-500">Entre aqui</a></h1>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder="Crie uma senha"
+                                    autoComplete="new-password"
+                                    minLength={8}
+                                    required
+                                    className="w-full rounded-lg border border-white/10 bg-neutral-800 p-3 pl-11 text-white outline-none transition placeholder:text-neutral-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30"
+                                />
+                            </div>
 
-						{/* Botão */}
-						<a href="/"
-							className="item-center justify-center flex w-full p-3 mt-4 rounded-lg bg-purple-600 text-white font-bold hover:bg-purple-500 transition"
-						>
-							Cadastrar
-						</a>
+                            <p className="mt-2 text-xs text-neutral-500">
+                                A senha deve ter pelo menos 8 caracteres.
+                            </p>
+                        </div>
 
-					</div>
+                        {/* Link para login */}
+                        <p className="text-center text-sm text-neutral-400">
+                            Já tem uma conta?{" "}
+                            <a
+                                href="/login"
+                                className="font-semibold text-violet-400 transition hover:text-violet-300"
+                            >
+                                Entre aqui
+                            </a>
+                        </p>
 
-				</div>
-			</div>
-		</main>
-	);
+                        {/* Botão */}
+                        <button
+                            type="submit"
+                            className="mt-2 w-full rounded-lg bg-purple-600 p-3 font-bold text-white transition hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-neutral-900"
+                        >
+                            Criar conta
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    );
 }
