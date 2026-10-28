@@ -63,7 +63,7 @@ export default function MembrosPage() {
             <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[600px] bg-cover bg-top bg-no-repeat opacity-40"
-                style={{ backgroundImage: "url('/background-home.png')" }}
+                style={{ backgroundImage: "url('/background-home.webp')" }}
             />
 
             {/* Degradê para integrar o fundo */}

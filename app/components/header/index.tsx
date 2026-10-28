@@ -4,6 +4,7 @@
 import { useState, FormEvent, MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { sair } from "@/app/login/actions";
 
 const NAV_LINKS = [
   { label: "Música", href: "/musica" },
@@ -12,7 +13,9 @@ const NAV_LINKS = [
   { label: "Pro", href: "/pro", highlight: true },
 ];
 
-export default function Header() {
+type UsuarioHeader = { username: string; avatar: string | null };
+
+export default function Header({ usuario }: { usuario: UsuarioHeader | null }) {
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -159,20 +162,56 @@ export default function Header() {
 
         {/* Ações */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <Link
-            href="/login"
-            className="hidden rounded-lg px-3 py-2 text-sm font-medium text-neutral-300 transition hover:bg-white/5 hover:text-white sm:inline-flex"
-          >
-            Entre
-          </Link>
+          {usuario ? (
+            <>
+              <Link
+                href={`/perfil/${usuario.username}`}
+                aria-label="Meu perfil"
+                className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition hover:bg-white/5"
+              >
+                {usuario.avatar ? (
+                  <img
+                    src={usuario.avatar}
+                    alt=""
+                    className="h-8 w-8 rounded-full border border-violet-500/40 object-cover"
+                  />
+                ) : (
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-violet-600 text-sm font-bold">
+                    {usuario.username[0].toUpperCase()}
+                  </span>
+                )}
+                <span className="hidden max-w-32 truncate text-sm font-medium text-neutral-200 sm:block">
+                  @{usuario.username}
+                </span>
+              </Link>
 
-          <Link
-            href="/cadastro"
-            className="rounded-lg bg-violet-600 px-3 py-2 text-sm font-semibold transition hover:bg-violet-500 sm:px-4"
-          >
-            <span className="sm:hidden">Cadastrar</span>
-            <span className="hidden sm:inline">Inscreva-se</span>
-          </Link>
+              <form action={sair}>
+                <button
+                  type="submit"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-neutral-300 transition hover:bg-white/5 hover:text-white"
+                >
+                  Sair
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="hidden rounded-lg px-3 py-2 text-sm font-medium text-neutral-300 transition hover:bg-white/5 hover:text-white sm:inline-flex"
+              >
+                Entre
+              </Link>
+
+              <Link
+                href="/cadastro"
+                className="rounded-lg bg-violet-600 px-3 py-2 text-sm font-semibold transition hover:bg-violet-500 sm:px-4"
+              >
+                <span className="sm:hidden">Cadastrar</span>
+                <span className="hidden sm:inline">Inscreva-se</span>
+              </Link>
+            </>
+          )}
 
           {/* Menu mobile */}
           <button
@@ -209,6 +248,7 @@ export default function Header() {
               </Link>
             ))}
 
+            {!usuario && (
             <Link
               href="/login"
               onClick={() => setMenuOpen(false)}
@@ -216,6 +256,7 @@ export default function Header() {
             >
               Entre
             </Link>
+            )}
           </div>
         </nav>
       )}

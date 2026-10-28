@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 const usuarios = [
   { nome: "Kuramoto", usuario: "@kuramoto", genero: "Metal alternativo", avatar: "/gato.jpg" },
   { nome: "Alex", usuario: "@alex.wav", genero: "Rock alternativo", avatar: "/gato.jpg" },
@@ -138,7 +138,7 @@ export default function Home() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[650px] bg-cover bg-top bg-no-repeat opacity-70"
-        style={{ backgroundImage: "url('/background-home.png')" }}
+        style={{ backgroundImage: "url('/background-home.webp')" }}
       />
 
       {/* Degradê para melhorar a leitura */}
@@ -177,12 +177,12 @@ export default function Home() {
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-4">
-            <a
+            <Link
               href="/cadastro"
               className="rounded-xl bg-violet-600 px-8 py-4 font-semibold text-white shadow-lg shadow-violet-950/30 transition hover:-translate-y-0.5 hover:bg-violet-500"
             >
               Crie seu perfil
-            </a>
+            </Link>
 
             <a
               href="#albuns"
@@ -371,12 +371,12 @@ export default function Home() {
                         💬 Comentar
                       </button>
 
-                      <a
+                      <Link
                         href="/login"
                         className="ml-auto text-sm font-semibold text-violet-400 transition hover:text-violet-300"
                       >
                         Abrir review →
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </article>
@@ -499,12 +499,12 @@ export default function Home() {
               seu universo musical com outras pessoas.
             </p>
 
-            <a
+            <Link
               href="/cadastro"
               className="mt-8 inline-flex rounded-xl bg-violet-600 px-8 py-4 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-violet-500"
             >
               Faça parte do SoundProfile
-            </a>
+            </Link>
           </div>
         </section>
       </main>
