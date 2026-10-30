@@ -85,3 +85,18 @@ export async function totaisDoUsuario(idUsuario: number) {
   );
   return l;
 }
+
+// Gêneros mais avaliados por um usuário (usado no painel de perfil do chat).
+export async function generosDoUsuario(idUsuario: number, limite = 4) {
+  return query<{ slug: string; nome: string; total: number }>(
+    `SELECT g.slug, g.nome, COUNT(*)::int AS total
+       FROM Avaliacao a
+       LEFT JOIN Album al ON al.idAlbum = a.idAlbum
+       LEFT JOIN Musica mu ON mu.idMusica = a.idMusica
+       JOIN ArtistaGenero ag ON ag.idArtista = COALESCE(a.idArtista, al.idArtista, mu.idArtista)
+       JOIN Genero g ON g.idGenero = ag.idGenero
+      WHERE a.idUsuario = $1
+      GROUP BY g.idGenero ORDER BY total DESC, g.nome LIMIT $2`,
+    [idUsuario, limite],
+  );
+}

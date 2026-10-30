@@ -24,6 +24,11 @@ Abra http://localhost:3000. As tabelas (`Usuario`, `Perfil`, `Sessao`, `Imagem`)
 - **Curtidas** em avaliações, **favoritos** e moderação (o administrador remove qualquer avaliação).
 - **Perfil** (`/perfil/username`) com abas: visão geral, avaliações, estatísticas (gráficos por período: 7 dias, 30 dias, histórico) e rankings e favoritos. Edição de foto, banner, nome, localização e biografia em `/perfil/editar`. Foto e banner aceitam JPG, PNG, WebP e **GIF animado** (até 2 MB, no máximo 150 quadros).
 - `/perfil/exemplo`: perfil de demonstração com dados fictícios (marcado como tal).
+- **Social** (`/social`, só para quem está logado):
+  - **Seguir**: pesquisar membros e seguir ou deixar de seguir, sem precisar de aprovação. O botão aparece em cada perfil (Seguir, Seguir de volta, Seguindo) e há abas Seguindo, Seguidores e Descobrir.
+  - **Mensagens privadas** (`/social/mensagens`): conversas salvas no banco, lista lateral com busca e não lidas, emojis, estado de envio, "carregar anteriores" e "apagar conversa" só da sua lista. Ao abrir o perfil de quem você conversa, o painel mostra bio, favoritos, gêneros e avaliações recentes.
+  - **Notificações** (`/social/notificacoes`): novos seguidores e mensagens não lidas. O menu tem o ícone de chat (mensagens não lidas) e um sino que abre a lista das últimas notificações.
+  - A atualização do chat é por consulta a cada 4 s (funciona na Vercel). Não há WebSocket.
 
 ## Primeiro acesso: criar o administrador
 
@@ -38,14 +43,14 @@ O catálogo começa vazio. Quem cadastra o conteúdo é o administrador (`/admin
 
 ## Banco de dados
 
-As tabelas são criadas e atualizadas sozinhas na primeira vez que o banco é usado (`CREATE TABLE IF NOT EXISTS` e `ALTER TABLE ... IF NOT EXISTS` em `lib/db.ts`). Não há migração manual. Novidades desta versão: `Genero`, `Artista`, `Album`, `Musica`, `ArtistaGenero`, `Avaliacao`, `CurtidaAvaliacao` e `Favorito`.
+As tabelas são criadas e atualizadas sozinhas na primeira vez que o banco é usado (`CREATE TABLE IF NOT EXISTS` e `ALTER TABLE ... IF NOT EXISTS` em `lib/db.ts`). Não há migração manual. Novidades desta versão: `Seguidor`, `Conversa`, `ParticipanteConversa`, `Mensagem`, `Notificacao` (todas só acrescentam tabelas; nada existente é alterado) e as anteriores: `Genero`, `Artista`, `Album`, `Musica`, `ArtistaGenero`, `Avaliacao`, `CurtidaAvaliacao` e `Favorito`.
 
 As colunas `spotifyId` já existem em `Artista`, `Album` e `Musica` para a futura integração com o Spotify preencher as mesmas tabelas.
 
 ## Ainda não implementado
 
 - Integração com o Spotify (login, catálogo e "mais ouvidos"). Veja as restrições da API em 2026: app em modo de desenvolvimento exige Premium na conta dona e limita a 5 usuários.
-- Listas musicais, seguidores e denúncias.
+- Listas musicais, denúncias, temas, loja, SoundCoins e inventário (próximas etapas da expansão).
 
 ## Estrutura
 

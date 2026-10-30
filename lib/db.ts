@@ -147,6 +147,62 @@ CREATE TABLE IF NOT EXISTS Favorito (
 CREATE UNIQUE INDEX IF NOT EXISTS favorito_unico_artista ON Favorito (idUsuario, idArtista) WHERE idArtista IS NOT NULL;
 CREATE UNIQUE INDEX IF NOT EXISTS favorito_unico_album   ON Favorito (idUsuario, idAlbum)   WHERE idAlbum   IS NOT NULL;
 CREATE UNIQUE INDEX IF NOT EXISTS favorito_unico_musica  ON Favorito (idUsuario, idMusica)  WHERE idMusica  IS NOT NULL;
+
+-- ===== Social: seguidores, mensagens privadas e notificações =====
+-- Seguir é de mão única e não precisa de aprovação: uma linha = "idSeguidor segue idSeguido".
+CREATE TABLE IF NOT EXISTS Seguidor (
+  idSeguidor INTEGER     NOT NULL REFERENCES Usuario(idUsuario) ON DELETE CASCADE,
+  idSeguido  INTEGER     NOT NULL REFERENCES Usuario(idUsuario) ON DELETE CASCADE,
+  criadoEm   TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (idSeguidor, idSeguido),
+  CHECK (idSeguidor <> idSeguido)
+);
+CREATE INDEX IF NOT EXISTS seguidor_por_seguido ON Seguidor (idSeguido, criadoEm DESC);
+
+-- Conversa privada entre dois usuários (sempre idUsuarioA < idUsuarioB, então só existe uma por par).
+CREATE TABLE IF NOT EXISTS Conversa (
+  idConversa INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  idUsuarioA INTEGER     NOT NULL REFERENCES Usuario(idUsuario) ON DELETE CASCADE,
+  idUsuarioB INTEGER     NOT NULL REFERENCES Usuario(idUsuario) ON DELETE CASCADE,
+  criadaEm   TIMESTAMPTZ NOT NULL DEFAULT now(),
+  CHECK (idUsuarioA < idUsuarioB),
+  UNIQUE (idUsuarioA, idUsuarioB)
+);
+
+-- Estado de cada participante: até que mensagem leu (lidaAte) e até onde apagou a
+-- conversa da própria lista (limpaAte). Apagar não mexe no histórico do outro usuário.
+CREATE TABLE IF NOT EXISTS ParticipanteConversa (
+  idConversa INTEGER NOT NULL REFERENCES Conversa(idConversa) ON DELETE CASCADE,
+  idUsuario  INTEGER NOT NULL REFERENCES Usuario(idUsuario)   ON DELETE CASCADE,
+  lidaAte    INTEGER NOT NULL DEFAULT 0,
+  limpaAte   INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (idConversa, idUsuario)
+);
+CREATE INDEX IF NOT EXISTS participante_por_usuario ON ParticipanteConversa (idUsuario);
+
+CREATE TABLE IF NOT EXISTS Mensagem (
+  idMensagem INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  idConversa INTEGER     NOT NULL REFERENCES Conversa(idConversa) ON DELETE CASCADE,
+  idAutor    INTEGER     NOT NULL REFERENCES Usuario(idUsuario)   ON DELETE CASCADE,
+  texto      TEXT        NOT NULL CHECK (char_length(texto) BETWEEN 1 AND 2000),
+  enviadaEm  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS mensagem_por_conversa   ON Mensagem (idConversa, idMensagem);
+CREATE INDEX IF NOT EXISTS mensagem_por_autor_data ON Mensagem (idAutor, enviadaEm);
+
+-- Mensagens novas não geram linha aqui (o contador vem de lidaAte, sem repetição).
+-- Esta tabela guarda os avisos de novos seguidores; o índice evita avisos repetidos não lidos.
+CREATE TABLE IF NOT EXISTS Notificacao (
+  idNotificacao INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  idUsuario     INTEGER     NOT NULL REFERENCES Usuario(idUsuario) ON DELETE CASCADE,
+  tipo          VARCHAR(30) NOT NULL,
+  idOrigem      INTEGER     REFERENCES Usuario(idUsuario) ON DELETE CASCADE,
+  lida          BOOLEAN     NOT NULL DEFAULT false,
+  criadaEm      TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE UNIQUE INDEX IF NOT EXISTS notificacao_sem_repeticao
+  ON Notificacao (idUsuario, tipo, idOrigem) WHERE lida = false;
+CREATE INDEX IF NOT EXISTS notificacao_por_usuario ON Notificacao (idUsuario, lida, criadaEm DESC);
 `;
 
 const global_ = globalThis as {

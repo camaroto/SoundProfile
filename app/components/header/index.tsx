@@ -5,6 +5,7 @@ import { useState, FormEvent, MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { sair } from "@/app/login/actions";
+import IndicadorSocial from "@/app/components/social/indicador";
 
 const NAV_LINKS = [
   { label: "Música", href: "/musica" },
@@ -165,6 +166,7 @@ export default function Header({ usuario }: { usuario: UsuarioHeader | null }) {
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           {usuario ? (
             <>
+              <IndicadorSocial />
               <Link
                 href={`/perfil/${usuario.username}`}
                 aria-label="Meu perfil"

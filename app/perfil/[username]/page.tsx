@@ -5,6 +5,8 @@ import { buscarPerfil } from "@/lib/perfis";
 import { obterUsuarioLogado } from "@/lib/sessao";
 import { totaisDoUsuario } from "@/lib/estatisticas";
 import { lerPeriodo } from "@/lib/constantes";
+import { relacaoCom } from "@/lib/seguidores";
+import { AcoesSeguir, BotaoMensagem } from "@/app/components/social/acoes-seguir";
 import { formatarNota } from "@/app/components/disco-rating/formatar";
 import { SecaoAvaliacoesDoPerfil, SecaoEstatisticas, SecaoRankings, VisaoGeral } from "./secoes";
 
@@ -40,6 +42,7 @@ export default async function PerfilPage({ params, searchParams }: Props) {
   const aba = ABAS.find((a) => a.id === sp.aba)?.id ?? "visao";
   const periodo = lerPeriodo(sp.periodo);
   const ehDono = logado?.idUsuario === perfil.idUsuario;
+  const relacao = logado && !ehDono ? await relacaoCom(logado.idUsuario, perfil.idUsuario) : { seguindo: false, meSegue: false };
   const nome = perfil.nomeExibicao || perfil.username;
   const membroDesde = new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric" }).format(
     perfil.dataCadastro,
@@ -109,6 +112,23 @@ export default async function PerfilPage({ params, searchParams }: Props) {
                   >
                     Editar perfil
                   </Link>
+                )}
+
+                {/* Seguir e mensagem: só para quem está logado e vê o perfil de outra pessoa */}
+                {!ehDono && (
+                  logado ? (
+                    <div className="flex flex-wrap items-center justify-end gap-2">
+                      <AcoesSeguir seguindo={relacao.seguindo} meSegue={relacao.meSegue} idUsuario={perfil.idUsuario} nome={nome} />
+                      <BotaoMensagem idUsuario={perfil.idUsuario} />
+                    </div>
+                  ) : (
+                    <Link
+                      href="/login"
+                      className="shrink-0 rounded-xl border border-white/15 px-4 py-3 text-sm font-medium text-white/80 transition hover:bg-white/5"
+                    >
+                      Entre para seguir
+                    </Link>
+                  )
                 )}
               </div>
 
