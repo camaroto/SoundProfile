@@ -6,6 +6,8 @@ import { obterUsuarioLogado } from "@/lib/sessao";
 import { totaisDoUsuario } from "@/lib/estatisticas";
 import { lerPeriodo } from "@/lib/constantes";
 import { relacaoCom } from "@/lib/seguidores";
+import PalcoPerfil from "@/app/components/moldura/palco-perfil";
+import BalaoPerfil from "@/app/components/moldura/balao";
 import { AcoesSeguir, BotaoMensagem } from "@/app/components/social/acoes-seguir";
 import { formatarNota } from "@/app/components/disco-rating/formatar";
 import { SecaoAvaliacoesDoPerfil, SecaoEstatisticas, SecaoRankings, VisaoGeral } from "./secoes";
@@ -58,8 +60,15 @@ export default async function PerfilPage({ params, searchParams }: Props) {
 
       <div className="relative mx-auto max-w-[1440px] px-4 pb-20 pt-6 sm:px-6 lg:px-10">
         <section className="relative isolate">
+          {/* Com moldura (telas a partir de 768 px): banner e foto ficam dentro do palco da moldura */}
+          {perfil.moldura && (
+            <div className="hidden md:block">
+              <PalcoPerfil nome={nome} banner={perfil.banner} avatar={perfil.avatar} moldura={perfil.moldura} balao={perfil.balao} />
+            </div>
+          )}
+
           {/* Banner */}
-          <div className="relative h-[250px] overflow-hidden rounded-2xl border border-white/10 sm:h-[320px] lg:h-[370px]">
+          <div className={`relative h-[250px] overflow-hidden rounded-2xl border border-white/10 sm:h-[320px] lg:h-[370px] ${perfil.moldura ? "md:hidden" : ""}`}>
             {perfil.banner ? (
               <img
                 src={perfil.banner}
@@ -81,17 +90,18 @@ export default async function PerfilPage({ params, searchParams }: Props) {
           </div>
 
           <div className="relative px-4 sm:px-8">
-            <div className="relative -mt-12 flex flex-col gap-5 sm:-mt-14">
-              <div className="flex items-end justify-between gap-4">
-                {/* Avatar */}
-                <div className="relative h-24 w-24 shrink-0 sm:h-32 sm:w-32">
-                  <div className="absolute -inset-1 rounded-[28px] bg-gradient-to-br from-violet-400 via-purple-600 to-fuchsia-500 opacity-80 blur-md" />
-                  <div className="relative h-full w-full overflow-hidden rounded-[25px] border border-white/20 bg-[#171020] p-1">
+            <div className={`relative -mt-12 flex flex-col gap-5 sm:-mt-14 ${perfil.moldura ? "md:mt-2" : ""}`}>
+              <div className={`flex items-end justify-between gap-4 ${perfil.moldura ? "md:justify-end" : ""}`}>
+                {/* Avatar (com moldura, nas telas largas a foto já está no palco acima) */}
+                <div className={`relative h-24 w-24 shrink-0 sm:h-32 sm:w-32 ${perfil.moldura ? "md:hidden" : ""}`}>
+                  <BalaoPerfil tipo={perfil.balao} className="absolute left-[78%] top-[6%] z-10 -translate-y-full" />
+                  <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-violet-400 via-purple-600 to-fuchsia-500 opacity-80 blur-md" />
+                  <div className="relative h-full w-full overflow-hidden rounded-full border border-white/20 bg-[#171020] p-1">
                     {perfil.avatar ? (
                       <img
                         src={perfil.avatar}
                         alt={`Avatar de ${nome}`}
-                        className="h-full w-full rounded-[21px] object-cover"
+                        className="h-full w-full rounded-full object-cover"
                       />
                     ) : (
                       <div

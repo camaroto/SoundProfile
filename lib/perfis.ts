@@ -1,5 +1,6 @@
 import { query, transacao } from "./db";
 import { idDaUrl, inserirImagem } from "./imagens";
+import { lerBalao, lerMoldura, type IdBalao, type IdMoldura } from "./molduras";
 
 export type Perfil = {
   idUsuario: number;
@@ -10,6 +11,8 @@ export type Perfil = {
   biografia: string;
   avatar: string | null;
   banner: string | null;
+  moldura: IdMoldura | null;
+  balao: IdBalao | null;
 };
 
 export async function buscarPerfil(username: string): Promise<Perfil | null> {
@@ -22,9 +25,11 @@ export async function buscarPerfil(username: string): Promise<Perfil | null> {
     biografia: string;
     avatar: string | null;
     banner: string | null;
+    moldura: string | null;
+    balao: string | null;
   }>(
     `SELECT u.idUsuario, u.username, u.dataCadastro, p.nomeExibicao, p.localizacao,
-            p.biografia, p.avatar, p.banner
+            p.biografia, p.avatar, p.banner, p.moldura, p.balao
        FROM Usuario u
        JOIN Perfil p ON p.idUsuario = u.idUsuario
       WHERE LOWER(u.username) = LOWER($1) AND u.status = 'ativa'`,
@@ -41,6 +46,8 @@ export async function buscarPerfil(username: string): Promise<Perfil | null> {
     biografia: l.biografia,
     avatar: l.avatar,
     banner: l.banner,
+    moldura: lerMoldura(l.moldura),
+    balao: lerBalao(l.balao),
   };
 }
 
@@ -53,6 +60,8 @@ export type DadosPerfil = {
   biografia: string;
   avatar: MudancaImagem;
   banner: MudancaImagem;
+  moldura: IdMoldura | null;
+  balao: IdBalao | null;
 };
 
 // Tudo numa transação: ou o perfil inteiro é atualizado, ou nada muda.
@@ -81,9 +90,10 @@ export async function atualizarPerfil(idUsuario: number, dados: DadosPerfil): Pr
 
     await client.query(
       `UPDATE Perfil
-          SET nomeExibicao = $2, localizacao = $3, biografia = $4, avatar = $5, banner = $6
+          SET nomeExibicao = $2, localizacao = $3, biografia = $4, avatar = $5, banner = $6,
+              moldura = $7, balao = $8
         WHERE idUsuario = $1`,
-      [idUsuario, dados.nomeExibicao, dados.localizacao, dados.biografia, avatar, banner],
+      [idUsuario, dados.nomeExibicao, dados.localizacao, dados.biografia, avatar, banner, dados.moldura, dados.balao],
     );
 
     for (const url of antigas) {

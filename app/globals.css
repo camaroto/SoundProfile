@@ -9,3 +9,22 @@ body {
   padding: 0;
   height: 100%;
 }
+
+/* Balão de fala pixel art animado: spritesheet de 48 quadros (46x34 px), 100 ms por quadro. */
+.balao-sticker {
+  --w: 92px;
+  --n: 48;
+  width: var(--w);
+  aspect-ratio: 46 / 34;
+  display: block;
+  background: url(/molduras/balao/balao.png) no-repeat;
+  background-size: calc(var(--w) * var(--n)) 100%;
+  image-rendering: pixelated;
+  animation: balao-play 4.8s steps(48) infinite;
+}
+@keyframes balao-play {
+  to { background-position-x: calc(var(--w) * var(--n) * -1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .balao-sticker { animation: none; background-position-x: calc(var(--w) * -12); }
+}

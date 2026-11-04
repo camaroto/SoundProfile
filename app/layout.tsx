@@ -4,10 +4,12 @@ import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { obterUsuarioLogado } from "@/lib/sessao";
 
-export const metadata: Metadata = {
-  title: "SoundProfile | Sua música, sua identidade",
-  description:
-    "Avalie álbuns, crie listas e compartilhe sua identidade musical com a comunidade.",
+export const metadata = {
+  title: "SoundProfile",
+  description: "Sua plataforma de música",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default async function RootLayout({

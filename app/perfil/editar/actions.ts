@@ -5,6 +5,7 @@ import { exigirLogin } from "@/lib/sessao";
 import { atualizarPerfil, type MudancaImagem } from "@/lib/perfis";
 import { ImagemInvalidaError, processarImagem } from "@/lib/imagens";
 import { validarPerfil, type ErrosPerfil } from "@/lib/validacao";
+import { lerBalao, lerMoldura } from "@/lib/molduras";
 
 const LIMITE_BYTES = 2 * 1024 * 1024; // 2 MB por imagem
 
@@ -71,6 +72,9 @@ export async function salvarPerfil(
       biografia: valores.biografia,
       avatar,
       banner,
+      // Só ids da lista permitida são gravados; qualquer outro valor vira "sem moldura".
+      moldura: lerMoldura(formData.get("moldura")),
+      balao: lerBalao(formData.get("balao")),
     });
   } catch (erro) {
     console.error("Falha ao salvar o perfil:", erro);

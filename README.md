@@ -24,6 +24,7 @@ Abra http://localhost:3000. As tabelas (`Usuario`, `Perfil`, `Sessao`, `Imagem`)
 - **Curtidas** em avaliações, **favoritos** e moderação (o administrador remove qualquer avaliação).
 - **Perfil** (`/perfil/username`) com abas: visão geral, avaliações, estatísticas (gráficos por período: 7 dias, 30 dias, histórico) e rankings e favoritos. Edição de foto, banner, nome, localização e biografia em `/perfil/editar`. Foto e banner aceitam JPG, PNG, WebP e **GIF animado** (até 2 MB, no máximo 150 quadros).
 - `/perfil/exemplo`: perfil de demonstração com dados fictícios (marcado como tal).
+- **Moldura do perfil** (em *Editar perfil*): moldura animada Kraken ou Sakura ao redor do banner e da foto (telas a partir de 768 px) e um balão de fala em pixel art no canto da foto. Os ids permitidos ficam em `lib/molduras.ts`; as colunas `Perfil.moldura` e `Perfil.balao` são criadas sozinhas.
 - **Social** (`/social`, só para quem está logado):
   - **Seguir**: pesquisar membros e seguir ou deixar de seguir, sem precisar de aprovação. O botão aparece em cada perfil (Seguir, Seguir de volta, Seguindo) e há abas Seguindo, Seguidores e Descobrir.
   - **Mensagens privadas** (`/social/mensagens`): conversas salvas no banco, lista lateral com busca e não lidas, emojis, estado de envio, "carregar anteriores" e "apagar conversa" só da sua lista. Ao abrir o perfil de quem você conversa, o painel mostra bio, favoritos, gêneros e avaliações recentes.

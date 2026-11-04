@@ -1,6 +1,7 @@
 
 "use client";
 
+import Image from "next/image";
 import { useState, FormEvent, MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -82,14 +83,21 @@ export default function Header({ usuario }: { usuario: UsuarioHeader | null }) {
       />
 
       <div className="relative z-10 mx-auto flex h-16 max-w-[1600px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+
         {/* Logo */}
         <Link
           href="/"
           aria-label="SoundProfile - página inicial"
           className="flex shrink-0 items-center gap-2"
         >
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-xl font-black transition hover:bg-violet-500">
-            S
+          <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl transition hover:scale-105">
+            <Image
+              src="/icon.png"
+              alt="SoundProfile Logo"
+              width={40}
+              height={40}
+              priority
+            />
           </span>
 
           <span className="hidden text-lg font-bold tracking-tight sm:block">
@@ -241,24 +249,23 @@ export default function Header({ usuario }: { usuario: UsuarioHeader | null }) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`rounded-lg px-4 py-3 text-sm transition hover:bg-white/5 ${
-                  link.highlight
+                className={`rounded-lg px-4 py-3 text-sm transition hover:bg-white/5 ${link.highlight
                     ? "font-semibold text-violet-400"
                     : "text-neutral-300 hover:text-white"
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
             ))}
 
             {!usuario && (
-            <Link
-              href="/login"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-4 py-3 text-sm text-neutral-300 transition hover:bg-white/5 hover:text-white sm:hidden"
-            >
-              Entre
-            </Link>
+              <Link
+                href="/login"
+                onClick={() => setMenuOpen(false)}
+                className="rounded-lg px-4 py-3 text-sm text-neutral-300 transition hover:bg-white/5 hover:text-white sm:hidden"
+              >
+                Entre
+              </Link>
             )}
           </div>
         </nav>

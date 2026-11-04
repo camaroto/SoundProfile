@@ -30,6 +30,8 @@ export default async function EditarPerfilPage() {
           }}
           avatarAtual={perfil.avatar}
           bannerAtual={perfil.banner}
+          molduraAtual={perfil.moldura}
+          balaoAtual={perfil.balao}
         />
       </div>
     </main>

@@ -31,6 +31,9 @@ CREATE TABLE IF NOT EXISTS Perfil (
 -- atualizar bancos criados antes desta versão.
 ALTER TABLE Perfil ADD COLUMN IF NOT EXISTS nomeExibicao VARCHAR(40);
 ALTER TABLE Perfil ADD COLUMN IF NOT EXISTS localizacao  VARCHAR(60);
+-- Moldura animada do perfil e balão de fala ao lado da foto (ids definidos em lib/molduras.ts).
+ALTER TABLE Perfil ADD COLUMN IF NOT EXISTS moldura      VARCHAR(20);
+ALTER TABLE Perfil ADD COLUMN IF NOT EXISTS balao        VARCHAR(20);
 
 -- Sessões de login. Guardamos só o hash do token; o token em si vive no cookie.
 CREATE TABLE IF NOT EXISTS Sessao (
