@@ -92,7 +92,7 @@ export default function Header({ usuario }: { usuario: UsuarioHeader | null }) {
         >
           <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl transition hover:scale-105">
             <Image
-              src="/icon.png"
+              src="/icon.jpg"
               alt="SoundProfile Logo"
               width={40}
               height={40}
