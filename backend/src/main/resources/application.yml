@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: soundprofile-api
+  flyway:
+    locations: classpath:db/migration
+    # O banco já pode ter as tabelas (criadas pelo site). Baseline 0 faz o V1 rodar mesmo assim,
+    # e como ele é todo "IF NOT EXISTS", nada existente é alterado.
+    baseline-on-migrate: true
+    baseline-version: "0"
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 5MB
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+app:
+  # Endereços do site (Next.js) autorizados a chamar a API pelo navegador, separados por vírgula.
+  cors-origens: ${CORS_ORIGENS:http://localhost:3000}
+  sessao-dias: 30
+  email:
+    brevo-api-key: ${BREVO_API_KEY:}
+    resend-api-key: ${RESEND_API_KEY:}
+    de: ${EMAIL_FROM:}
+    de-nome: ${EMAIL_FROM_NOME:SoundProfile}
+    # Em produção, sem serviço de e-mail configurado o cadastro falha. Em desenvolvimento, o código vai para o log.
+    modo-desenvolvimento: ${EMAIL_MODO_DEV:true}

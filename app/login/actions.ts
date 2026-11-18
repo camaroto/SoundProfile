@@ -1,41 +1,69 @@
+
 "use server";
 
-import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
-import { buscarParaLogin } from "@/lib/usuarios";
-import { criarSessao, encerrarSessao } from "@/lib/sessao";
+import { api, ApiError } from "@/lib/api";
+import { guardarSessao, encerrarSessao, type SessaoResposta } from "@/lib/sessao";
 
 export type EstadoLogin = {
   erro?: string;
-  username: string; // a senha nunca volta para a tela
+  username: string;
 };
 
-// Hash de uma senha qualquer. Serve para gastar o mesmo tempo de verificação
-// quando o usuário não existe, para não revelar quais contas existem.
-const HASH_FALSO = "$2b$12$xvC9u4CjCZr49LItXwIPZuwNSOVVDzOnVpAsDHh12krUEa9fKVkli";
-
-export async function entrar(_anterior: EstadoLogin, formData: FormData): Promise<EstadoLogin> {
+export async function entrar(
+  _anterior: EstadoLogin,
+  formData: FormData,
+): Promise<EstadoLogin> {
   const username = String(formData.get("username") ?? "").trim();
   const password = String(formData.get("password") ?? "");
 
   if (!username || !password) {
-    return { erro: "Informe seu usuário (ou e-mail) e a senha.", username };
+    return {
+      erro: "Informe seu usuário (ou e-mail) e a senha.",
+      username,
+    };
   }
 
-  const usuario = await buscarParaLogin(username);
-  const senhaConfere = await bcrypt.compare(password, usuario?.senhaHash ?? HASH_FALSO);
+  let sessao: SessaoResposta;
 
-  // UC04 2a: mesma mensagem para usuário inexistente e senha errada.
-  if (!usuario || !senhaConfere) {
-    return { erro: "Usuário ou senha inválidos.", username };
+  try {
+    sessao = await api<SessaoResposta>("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        login: username,
+        password,
+      }),
+    });
+  } catch (erro) {
+    if (erro instanceof ApiError) {
+      if (erro.codigo === "EMAIL_NAO_VERIFICADO") {
+        const email = erro.campos.email || username;
+        redirect(`/verificar-email?email=${encodeURIComponent(email)}`);
+      }
+
+      if (erro.status === 401) {
+        return {
+          erro: "Usuário ou senha inválidos.",
+          username,
+        };
+      }
+
+      return {
+        erro: erro.message,
+        username,
+      };
+    }
+
+    console.error("Falha ao entrar:", erro);
+
+    return {
+      erro: "Não foi possível entrar. Tente novamente.",
+      username,
+    };
   }
 
-  // UC04 2b
-  if (usuario.status !== "ativa") {
-    return { erro: "Esta conta não está ativa.", username };
-  }
+  await guardarSessao(sessao);
 
-  await criarSessao(usuario.idUsuario);
   redirect("/");
 }
 
