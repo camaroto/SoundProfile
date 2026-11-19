@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { listarAlbuns, listarArtistas, listarGeneros } from "@/lib/catalogo";
+import { listarAlbuns, listarArtistas, listarGeneros, listarMusicas } from "@/lib/catalogo";
 import { avaliacoesRecentes, listarMembros } from "@/lib/comunidade";
 import { obterUsuarioLogado } from "@/lib/sessao";
 import { DiscoRating } from "@/app/components/disco-rating";
-import { CartaoAlbum, CartaoArtista, Capa, EstadoVazio, formatarData, linkItem } from "@/app/components/ui";
+import { CartaoAlbum, CartaoArtista, Capa, EstadoVazio, formatarData, linkItem, LinhaMusica, } from "@/app/components/ui";
 
 const navegacao = [
   { nome: "Social", href: "#comunidade" },
+  { nome: "Músicas", href: "#musicas" },
   { nome: "Álbuns", href: "#albuns" },
   { nome: "Reviews", href: "#reviews" },
   { nome: "Gêneros", href: "#generos" },
@@ -33,10 +34,11 @@ function TituloSecao({ titulo, descricao, acao }: { titulo: string; descricao?: 
 }
 
 export default async function Home() {
-  const [usuario, membros, albuns, melhores, artistas, reviews, generos] = await Promise.all([
+  const [usuario, membros, albuns, musicas, melhores, artistas, reviews, generos] = await Promise.all([
     obterUsuarioLogado(),
     listarMembros({ ordem: "ativos", limite: 8 }),
     listarAlbuns({ limite: 8 }),
+    listarMusicas({ limite: 8 }),
     listarAlbuns({ ordem: "melhores", limite: 4 }),
     listarArtistas({ ordem: "melhores", limite: 6 }),
     avaliacoesRecentes(4, true),
@@ -123,6 +125,31 @@ export default async function Home() {
                   </Link>
                 ))}
               </div>
+            )}
+          </div>
+        </section>
+
+        {/* Músicas */}
+        <section id="musicas" className="scroll-mt-32 border-b border-white/5 bg-neutral-950/40 px-5 py-14 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
+            <TituloSecao
+              titulo="Músicas recentes"
+              descricao="As últimas músicas adicionadas ao catálogo."
+              acao={{ href: "/musica", rotulo: "Ver todas" }}
+            />
+
+            {musicas.itens.length === 0 ? (
+              <EstadoVazio
+                titulo="Ainda não há músicas no catálogo"
+                texto="As músicas importadas do Spotify aparecerão aqui."
+                acao={{ href: "/buscar", rotulo: "Buscar músicas" }}
+              />
+            ) : (
+              <ul className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]">
+                {musicas.itens.map((m) => (
+                  <LinhaMusica key={m.idMusica} musica={m} />
+                ))}
+              </ul>
             )}
           </div>
         </section>

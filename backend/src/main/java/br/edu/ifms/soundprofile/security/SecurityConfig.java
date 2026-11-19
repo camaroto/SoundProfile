@@ -49,7 +49,11 @@ public class SecurityConfig {
                                 "/api/auth/reenviar-codigo", "/api/saude")
                         .permitAll()
                         // Leitura pública (perfis e imagens); escrita sempre exige login.
-                        .requestMatchers(HttpMethod.GET, "/api/perfis/**", "/api/imagens/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/perfis/**",
+                                "/api/imagens/**",
+                                "/api/spotify/**")
+                        .permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .addFilterBefore(new SessaoFilter(jdbc), UsernamePasswordAuthenticationFilter.class)

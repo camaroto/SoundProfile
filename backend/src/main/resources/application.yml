@@ -32,3 +32,9 @@ app:
     de-nome: ${EMAIL_FROM_NOME:SoundProfile}
     # Em produção, sem serviço de e-mail configurado o cadastro falha. Em desenvolvimento, o código vai para o log.
     modo-desenvolvimento: ${EMAIL_MODO_DEV:true}
+
+spotify:
+  client-id: ${SPOTIFY_CLIENT_ID}
+  client-secret: ${SPOTIFY_CLIENT_SECRET}
+  token-uri: https://accounts.spotify.com/api/token
+  api-base-url: https://api.spotify.com/v1
