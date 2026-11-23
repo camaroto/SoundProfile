@@ -28,3 +28,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .balao-sticker { animation: none; background-position-x: calc(var(--w) * -12); }
 }
+
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+  -webkit-appearance: none;
+}
