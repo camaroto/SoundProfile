@@ -5,7 +5,7 @@ import { buscarPerfil } from "@/lib/perfis";
 import { obterUsuarioLogado } from "@/lib/sessao";
 import { totaisDoUsuario } from "@/lib/estatisticas";
 import { lerPeriodo } from "@/lib/constantes";
-import { relacaoCom } from "@/lib/seguidores";
+import { contagens, relacaoCom } from "@/lib/seguidores";
 import PalcoPerfil from "@/app/components/moldura/palco-perfil";
 import BalaoPerfil from "@/app/components/moldura/balao";
 import { AcoesSeguir, BotaoMensagem } from "@/app/components/social/acoes-seguir";
@@ -40,7 +40,7 @@ export default async function PerfilPage({ params, searchParams }: Props) {
   // UC02 2a: perfil inexistente.
   if (!perfil) notFound();
 
-  const [logado, totais] = await Promise.all([obterUsuarioLogado(), totaisDoUsuario(perfil.idUsuario)]);
+  const [logado, totais, rede] = await Promise.all([obterUsuarioLogado(), totaisDoUsuario(perfil.idUsuario), contagens(perfil.idUsuario)]);
   const aba = ABAS.find((a) => a.id === sp.aba)?.id ?? "visao";
   const periodo = lerPeriodo(sp.periodo);
   const ehDono = logado?.idUsuario === perfil.idUsuario;
@@ -116,12 +116,20 @@ export default async function PerfilPage({ params, searchParams }: Props) {
                 </div>
 
                 {ehDono && (
-                  <Link
-                    href="/perfil/editar"
-                    className="shrink-0 rounded-xl bg-violet-500 px-4 py-3 text-sm font-semibold text-white shadow-[0_0_25px_rgba(139,92,246,0.25)] transition hover:bg-violet-400 sm:px-5"
-                  >
-                    Editar perfil
-                  </Link>
+                  <div className="flex shrink-0 flex-wrap justify-end gap-2">
+                    <Link
+                      href="/perfil/personalizar"
+                      className="rounded-xl border border-white/15 px-4 py-3 text-sm font-medium text-white/80 transition hover:bg-white/5 hover:text-white sm:px-5"
+                    >
+                      Personalizar
+                    </Link>
+                    <Link
+                      href="/perfil/editar"
+                      className="rounded-xl bg-violet-500 px-4 py-3 text-sm font-semibold text-white shadow-[0_0_25px_rgba(139,92,246,0.25)] transition hover:bg-violet-400 sm:px-5"
+                    >
+                      Editar perfil
+                    </Link>
+                  </div>
                 )}
 
                 {/* Seguir e mensagem: só para quem está logado e vê o perfil de outra pessoa */}
@@ -148,6 +156,11 @@ export default async function PerfilPage({ params, searchParams }: Props) {
                   <span className="ml-2 text-violet-400">.</span>
                 </h1>
                 <p className="mt-2 text-sm text-white/45">@{perfil.username}</p>
+
+                <p className="mt-2 flex gap-4 text-sm text-white/55">
+                  <span><strong className="font-semibold tabular-nums text-white">{rede.seguidores}</strong> {rede.seguidores === 1 ? "seguidor" : "seguidores"}</span>
+                  <span><strong className="font-semibold tabular-nums text-white">{rede.seguindo}</strong> seguindo</span>
+                </p>
 
                 {perfil.biografia ? (
                   <p className="mt-3 max-w-2xl whitespace-pre-line text-sm leading-6 text-white/65 sm:text-base">

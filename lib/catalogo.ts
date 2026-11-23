@@ -152,6 +152,16 @@ export async function listarMusicas(o: Opcoes = {}): Promise<Pagina<MusicaItem>>
   return { total: linhas[0]?.geral ?? 0, itens: linhas.map(mapMusica) };
 }
 
+// Catálogo inicial: as músicas famosas marcadas como destaque (mostradas a quem ainda não entrou).
+export async function listarMusicasFamosas(limite = 8): Promise<MusicaItem[]> {
+  const linhas = await query<LinhaMusica>(
+    `SELECT ${COLUNAS_MUSICA} ${JOINS_MUSICA}
+      WHERE mu.destaque ORDER BY mu.destaqueOrdem, mu.idMusica LIMIT $1`,
+    [limite],
+  );
+  return linhas.map(mapMusica);
+}
+
 export async function listarGeneros(): Promise<Genero[]> {
   const linhas = await query<{ idgenero: number; slug: string; nome: string; artistas: number; albuns: number }>(
     `SELECT g.idGenero, g.slug, g.nome,

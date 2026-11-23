@@ -2,10 +2,17 @@ import Link from "next/link";
 import type { GeneroLink } from "@/lib/catalogo";
 import { DiscoRating } from "@/app/components/disco-rating";
 import { ROTA, type TipoItem } from "@/lib/constantes";
+import BotaoPreview from "@/app/components/preview/botao-preview";
 
 // Peças visuais compartilhadas pelas páginas de música, gênero, busca e perfil.
 
 export const card = "rounded-2xl border border-white/[0.08] bg-white/[0.025]";
+
+// Botões do site: um padrão só, para a busca, as listas e os perfis parecerem a mesma casa.
+const focoBotao = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300";
+export const botaoPrimario = `inline-flex items-center justify-center rounded-full bg-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-violet-500 ${focoBotao}`;
+export const botaoPequeno = `inline-flex shrink-0 items-center justify-center rounded-full bg-violet-600 px-3.5 py-1.5 text-xs font-semibold text-white transition hover:bg-violet-500 ${focoBotao}`;
+export const botaoContorno = `inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white/80 transition hover:border-violet-400/40 hover:bg-white/5 hover:text-white ${focoBotao}`;
 
 export function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10 ${className}`}>{children}</div>;
@@ -125,10 +132,22 @@ export function CartaoArtista({ artista }: { artista: { slug: string; nome: stri
   );
 }
 
-export function LinhaMusica({ musica, mostrarNumero = false }: { musica: { slug: string; titulo: string; faixa: number | null; artista: string; capa: string | null; media: number | null; total: number }; mostrarNumero?: boolean }) {
+export function LinhaMusica({
+  musica,
+  mostrarNumero = false,
+  avaliar = false,
+}: {
+  musica: { slug: string; titulo: string; faixa: number | null; artista: string; capa: string | null; media: number | null; total: number };
+  mostrarNumero?: boolean;
+  // Mostra o botão "Avaliar" (usado nos resultados da busca).
+  avaliar?: boolean;
+}) {
   return (
-    <li className="border-b border-white/[0.06] last:border-0">
-      <Link href={`/musica/${musica.slug}`} className="flex items-center gap-3 px-4 py-3 transition hover:bg-violet-500/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-400">
+    <li className="flex items-center border-b border-white/[0.06] transition last:border-0 hover:bg-violet-500/[0.05]">
+      <Link
+        href={`/musica/${musica.slug}`}
+        className="flex min-w-0 flex-1 items-center gap-3 px-4 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-400"
+      >
         {mostrarNumero ? (
           <span className="w-6 shrink-0 text-right text-sm tabular-nums text-white/35">{musica.faixa ?? "–"}</span>
         ) : (
@@ -138,8 +157,19 @@ export function LinhaMusica({ musica, mostrarNumero = false }: { musica: { slug:
           <p className="truncate text-sm font-medium">{musica.titulo}</p>
           {!mostrarNumero && <p className="truncate text-xs text-white/45">{musica.artista}</p>}
         </div>
-        <Nota media={musica.media} total={musica.total} />
       </Link>
+
+      <div className="flex shrink-0 items-center gap-2 pr-3 sm:pr-4">
+        <span className={avaliar ? "hidden sm:block" : ""}>
+          <Nota media={musica.media} total={musica.total} />
+        </span>
+        <BotaoPreview titulo={musica.titulo} artista={musica.artista} />
+        {avaliar && (
+          <Link href={`/musica/${musica.slug}#sua-avaliacao`} className={botaoPequeno}>
+            Avaliar
+          </Link>
+        )}
+      </div>
     </li>
   );
 }

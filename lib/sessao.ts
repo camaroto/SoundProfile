@@ -2,7 +2,7 @@
 import { cache } from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { api } from "./api";
+import { api, ApiError } from "./api";
 
 const COOKIE = "sp_sessao";
 
@@ -22,7 +22,11 @@ export type SessaoResposta = {
 export async function guardarSessao(sessao: SessaoResposta): Promise<void> {
   const expiraEm = new Date(sessao.expiraEm);
 
-  if (!sessao.token || Number.isNaN(expiraEm.getTime()) || expiraEm <= new Date()) {
+  if (
+    !sessao.token ||
+    Number.isNaN(expiraEm.getTime()) ||
+    expiraEm <= new Date()
+  ) {
     throw new Error("A API retornou uma sessão inválida.");
   }
 
@@ -39,31 +43,28 @@ export async function obterTokenSessao(): Promise<string | null> {
   return (await cookies()).get(COOKIE)?.value ?? null;
 }
 
-export const obterUsuarioLogado = cache(async (): Promise<UsuarioLogado | null> => {
-  const token = await obterTokenSessao();
+export const obterUsuarioLogado = cache(
+  async (): Promise<UsuarioLogado | null> => {
+    const token = await obterTokenSessao();
 
-  if (!token) return null;
+    if (!token) return null;
 
-  try {
-    return await api<UsuarioLogado>("/api/auth/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  } catch (erro) {
-    if (
-      erro instanceof Error &&
-      "status" in erro &&
-      ((erro as { status: number }).status === 401 ||
-        (erro as { status: number }).status === 403)
-    ) {
-      (await cookies()).delete(COOKIE);
+    try {
+      return await api<UsuarioLogado>("/api/auth/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (erro) {
+      if (erro instanceof ApiError && (erro.status === 401 || erro.status === 403)) {
+        return null;
+      }
+
+      console.error("Falha ao validar a sessão:", erro);
+      return null;
     }
-
-    console.error("Falha ao validar a sessão:", erro);
-    return null;
   }
-});
+);
 
 export async function exigirLogin(): Promise<UsuarioLogado> {
   const usuario = await obterUsuarioLogado();

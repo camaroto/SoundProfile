@@ -151,6 +151,11 @@ CREATE UNIQUE INDEX IF NOT EXISTS favorito_unico_artista ON Favorito (idUsuario,
 CREATE UNIQUE INDEX IF NOT EXISTS favorito_unico_album   ON Favorito (idUsuario, idAlbum)   WHERE idAlbum   IS NOT NULL;
 CREATE UNIQUE INDEX IF NOT EXISTS favorito_unico_musica  ON Favorito (idUsuario, idMusica)  WHERE idMusica  IS NOT NULL;
 
+-- Músicas em destaque (catálogo inicial com músicas famosas). Também criado pelo Flyway (V2).
+ALTER TABLE Musica ADD COLUMN IF NOT EXISTS destaque      BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE Musica ADD COLUMN IF NOT EXISTS destaqueOrdem INTEGER;
+CREATE INDEX IF NOT EXISTS musica_destaque ON Musica (destaqueOrdem) WHERE destaque;
+
 -- ===== Social: seguidores, mensagens privadas e notificações =====
 -- Seguir é de mão única e não precisa de aprovação: uma linha = "idSeguidor segue idSeguido".
 CREATE TABLE IF NOT EXISTS Seguidor (

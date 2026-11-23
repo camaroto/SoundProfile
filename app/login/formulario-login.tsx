@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import CampoTexto from "@/app/components/campo-texto";
+import BotaoGoogle, { SeparadorOu } from "@/app/components/botao-google";
 import { entrar, type EstadoLogin } from "./actions";
 
 const estadoInicial: EstadoLogin = { username: "" };
@@ -59,6 +60,9 @@ export default function FormularioLogin() {
       >
         {pendente ? "Entrando..." : "Entrar"}
       </button>
+
+      <SeparadorOu />
+      <BotaoGoogle />
     </form>
   );
 }

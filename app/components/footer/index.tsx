@@ -8,7 +8,7 @@ const FOOTER_SECTIONS = [
       { label: "Buscar", href: "/buscar" },
       { label: "Músicas", href: "/musica" },
       { label: "Gêneros", href: "/generos" },
-      { label: "Artistas", href: "/musica?tipo=artista" },
+      { label: "Artistas", href: "/artistas" },
       { label: "Membros", href: "/membros" },
     ],
   },

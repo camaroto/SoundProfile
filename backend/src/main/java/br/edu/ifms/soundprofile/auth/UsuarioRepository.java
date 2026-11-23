@@ -20,6 +20,42 @@ public class UsuarioRepository {
     public record Pendente(long idUsuario, String username, String email) {
     }
 
+    public record ContaGoogle(long idUsuario, String status, String googleId) {
+    }
+
+    public Optional<ContaGoogle> buscarPorGoogleId(String sub) {
+        return jdbc.sql("SELECT idusuario, status, googleid FROM usuario WHERE googleid = :sub")
+            .param("sub", sub)
+            .query((rs, n) -> new ContaGoogle(rs.getLong("idusuario"), rs.getString("status"), rs.getString("googleid")))
+            .optional();
+    }
+
+    public Optional<ContaGoogle> buscarPorEmail(String email) {
+        return jdbc.sql("SELECT idusuario, status, googleid FROM usuario WHERE LOWER(email) = LOWER(:email)")
+            .param("email", email)
+            .query((rs, n) -> new ContaGoogle(rs.getLong("idusuario"), rs.getString("status"), rs.getString("googleid")))
+            .optional();
+    }
+
+    /** O Google confirmou que a pessoa é dona do e-mail, então a conta também passa a ser verificada. */
+    public void vincularGoogle(long idUsuario, String sub) {
+        jdbc.sql("UPDATE usuario SET googleid = :sub, emailverificado = true WHERE idusuario = :id")
+            .param("sub", sub).param("id", idUsuario).update();
+    }
+
+    /** Conta criada pelo Google: já nasce verificada. Deve rodar dentro de uma transação. */
+    public long criarComGoogle(String username, String email, String senhaHash, String googleId, String nomeExibicao) {
+        long id = jdbc.sql("""
+                INSERT INTO usuario (username, email, senhahash, emailverificado, googleid)
+                VALUES (:username, :email, :senha, true, :google) RETURNING idusuario
+                """)
+            .param("username", username).param("email", email).param("senha", senhaHash).param("google", googleId)
+            .query(Long.class).single();
+        jdbc.sql("INSERT INTO perfil (idusuario, nomeexibicao) VALUES (:id, :nome)")
+            .param("id", id).param("nome", nomeExibicao).update();
+        return id;
+    }
+
     public boolean existeEmail(String email) {
         return jdbc.sql("SELECT EXISTS (SELECT 1 FROM usuario WHERE LOWER(email) = LOWER(:email))")
             .param("email", email).query(Boolean.class).single();

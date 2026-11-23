@@ -18,6 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class AuthController {
 
+    public record GoogleUsernameRequisicao(String tokenCadastro, String username) {
+    }
+
+    public record GoogleFinalizarRequisicao(String tokenCadastro, String username) {
+    }
+
+    public record DisponibilidadeResposta(boolean disponivel) {
+    }
+
     public record CadastroRequisicao(String username, String email, String password) {
     }
 
@@ -33,6 +42,9 @@ public class AuthController {
     public record CadastroResposta(String email, String mensagem) {
     }
 
+    public record GoogleRequisicao(String code, String redirectUri) {
+    }
+
     public record Mensagem(String mensagem) {
     }
 
@@ -46,7 +58,7 @@ public class AuthController {
     public ResponseEntity<CadastroResposta> cadastrar(@RequestBody CadastroRequisicao r) {
         String email = auth.cadastrar(r.username(), r.email(), r.password());
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(new CadastroResposta(email, "Enviamos um código de 6 dígitos para o seu e-mail."));
+                .body(new CadastroResposta(email, "Enviamos um código de 6 dígitos para o seu e-mail."));
     }
 
     @PostMapping("/verificar-email")
@@ -65,10 +77,31 @@ public class AuthController {
         return auth.entrar(r.login(), r.password());
     }
 
+    /** O site recebe o código do Google e o entrega aqui para virar uma sessão. */
+
+    @PostMapping("/google")
+    public AuthService.GoogleResposta google(@RequestBody GoogleRequisicao r) {
+        return auth.entrarComGoogle(r.code(), r.redirectUri());
+    }
+
+    @PostMapping("/google/username-disponivel")
+    public DisponibilidadeResposta usernameGoogleDisponivel(
+            @RequestBody GoogleUsernameRequisicao r) {
+        return new DisponibilidadeResposta(
+                auth.usernameGoogleDisponivel(r.tokenCadastro(), r.username()));
+    }
+
+    @PostMapping("/google/finalizar")
+    public AuthService.SessaoResposta finalizarGoogle(
+            @RequestBody GoogleFinalizarRequisicao r) {
+        return auth.finalizarCadastroGoogle(r.tokenCadastro(), r.username());
+    }
+
     @PostMapping("/logout")
     public ResponseEntity<Void> sair(HttpServletRequest req) {
         String token = SessaoFilter.lerToken(req);
-        if (token != null) auth.sair(token);
+        if (token != null)
+            auth.sair(token);
         return ResponseEntity.noContent().build();
     }
 

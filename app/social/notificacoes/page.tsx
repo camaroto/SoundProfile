@@ -36,7 +36,7 @@ export default async function NotificacoesPage() {
                 const nome = c.outro.nomeExibicao || c.outro.username;
                 return (
                   <li key={c.idConversa}>
-                    <Link href={`/social/mensagens/${c.idConversa}`} className="flex items-center gap-3 rounded-xl border border-violet-400/20 bg-violet-500/[0.07] p-3 transition hover:bg-violet-500/15">
+                    <Link href={`/social/mensagens/${c.idConversa}`} className="flex items-center gap-3 rounded-xl border border-[#2e1065] bg-violet-500/[0.07] p-3 transition hover:bg-violet-500/15">
                       <Avatar src={c.outro.avatar} nome={nome} className="h-11 w-11" />
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium">{nome} enviou {c.naoLidas} {c.naoLidas === 1 ? "mensagem" : "mensagens"}</span>
@@ -59,7 +59,7 @@ export default async function NotificacoesPage() {
               {avisos.map((a) => {
                 const nome = a.nomeExibicao || a.username;
                 return (
-                  <li key={a.idNotificacao} className={`flex flex-wrap items-center gap-3 rounded-xl border p-3 ${a.lida ? "border-white/[0.08] bg-white/[0.02]" : "border-violet-400/20 bg-violet-500/[0.07]"}`}>
+                  <li key={a.idNotificacao} className={`flex flex-wrap items-center gap-3 rounded-xl border p-3 ${a.lida ? "border-[#2e1065]/70 bg-white/[0.02]" : "border-[#2e1065] bg-violet-500/[0.07]"}`}>
                     <Link href={`/perfil/${a.username}`} className="flex min-w-0 flex-1 items-center gap-3">
                       <Avatar src={a.avatar} nome={nome} className="h-11 w-11" />
                       <span className="min-w-0">

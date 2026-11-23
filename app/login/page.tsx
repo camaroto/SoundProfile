@@ -7,8 +7,17 @@ export const metadata: Metadata = {
   title: "Entrar | SoundProfile",
 };
 
-export default async function EntrarConta() {
+const ERROS_GOOGLE: Record<string, string> = {
+  GOOGLE_NAO_CONFIGURADO: "O login com Google ainda não foi configurado neste site.",
+  GOOGLE_CANCELADO: "Você cancelou o login com o Google.",
+  GOOGLE_FALHA: "Não foi possível entrar com o Google. Tente novamente.",
+  GOOGLE_EMAIL_NAO_VERIFICADO: "O Google informou que o e-mail dessa conta ainda não foi verificado.",
+  GOOGLE_CONTA_DIFERENTE: "Esse e-mail já está ligado a outra conta do Google.",
+};
+
+export default async function EntrarConta({ searchParams }: { searchParams: Promise<{ erro?: string }> }) {
   if (await obterUsuarioLogado()) redirect("/");
+  const { erro } = await searchParams;
 
   return (
     <main className="min-h-[calc(100vh-64px)]">
@@ -26,6 +35,12 @@ export default async function EntrarConta() {
               Entre na sua conta do SoundProfile
             </p>
           </div>
+
+          {erro && ERROS_GOOGLE[erro] && (
+            <p role="alert" className="mb-5 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-center text-sm text-red-300">
+              {ERROS_GOOGLE[erro]}
+            </p>
+          )}
 
           <FormularioLogin />
         </div>

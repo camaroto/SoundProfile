@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
+import OcultarNaConversa from "@/app/components/footer/ocultar-na-conversa";
 import { obterUsuarioLogado } from "@/lib/sessao";
 
 export const metadata = {
@@ -26,7 +27,9 @@ export default async function RootLayout({
           usuario={usuario ? { username: usuario.username, avatar: usuario.avatar, admin: usuario.role === "admin" } : null}
         />
         {children}
-        <Footer />
+        <OcultarNaConversa>
+          <Footer />
+        </OcultarNaConversa>
       </body>
     </html>
   );

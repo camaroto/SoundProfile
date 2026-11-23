@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { listarAlbuns, listarArtistas, listarGeneros, listarMusicas } from "@/lib/catalogo";
+import { listarAlbuns, listarArtistas, listarGeneros, listarMusicas, listarMusicasFamosas } from "@/lib/catalogo";
 import { avaliacoesRecentes, listarMembros } from "@/lib/comunidade";
 import { obterUsuarioLogado } from "@/lib/sessao";
 import { DiscoRating } from "@/app/components/disco-rating";
@@ -34,7 +34,7 @@ function TituloSecao({ titulo, descricao, acao }: { titulo: string; descricao?: 
 }
 
 export default async function Home() {
-  const [usuario, membros, albuns, musicas, melhores, artistas, reviews, generos] = await Promise.all([
+  const [usuario, membros, albuns, musicas, melhores, artistas, reviews, generos, famosas] = await Promise.all([
     obterUsuarioLogado(),
     listarMembros({ ordem: "ativos", limite: 8 }),
     listarAlbuns({ limite: 8 }),
@@ -43,7 +43,10 @@ export default async function Home() {
     listarArtistas({ ordem: "melhores", limite: 6 }),
     avaliacoesRecentes(4, true),
     listarGeneros(),
+    listarMusicasFamosas(8),
   ]);
+  // Quem ainda não entrou vê o catálogo inicial (músicas famosas); quem entrou vê as mais recentes.
+  const mostrarFamosas = !usuario && famosas.length > 0;
   const ranking = melhores.itens.filter((a) => a.media !== null);
 
   return (
@@ -133,12 +136,23 @@ export default async function Home() {
         <section id="musicas" className="scroll-mt-32 border-b border-white/5 bg-neutral-950/40 px-5 py-14 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-7xl">
             <TituloSecao
-              titulo="Músicas recentes"
-              descricao="As últimas músicas adicionadas ao catálogo."
-              acao={{ href: "/musica", rotulo: "Ver todas" }}
+              titulo={mostrarFamosas ? "Músicas famosas" : "Músicas recentes"}
+              descricao={mostrarFamosas ? "Para começar: sucessos que todo mundo conhece. Ouça uma prévia e avalie." : "As últimas músicas adicionadas ao catálogo."}
+              acao={{ href: "/musica?tipo=musica", rotulo: "Ver todas" }}
             />
 
-            {musicas.itens.length === 0 ? (
+            {mostrarFamosas ? (
+              <>
+                <ul className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]">
+                  {famosas.map((m) => (
+                    <LinhaMusica key={m.idMusica} musica={m} avaliar />
+                  ))}
+                </ul>
+                <p className="mt-4 text-sm text-neutral-500">
+                  <Link href="/cadastro" className="font-semibold text-violet-400 hover:text-violet-300">Crie sua conta</Link> para salvar suas avaliações e montar seu perfil.
+                </p>
+              </>
+            ) : musicas.itens.length === 0 ? (
               <EstadoVazio
                 titulo="Ainda não há músicas no catálogo"
                 texto="As músicas importadas do Spotify aparecerão aqui."
@@ -157,7 +171,7 @@ export default async function Home() {
         {/* Álbuns */}
         <section id="albuns" className="scroll-mt-32 px-5 py-14 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-7xl">
-            <TituloSecao titulo="Álbuns recentes" descricao="Os últimos álbuns adicionados ao catálogo." acao={{ href: "/musica?tipo=album", rotulo: "Ver todos" }} />
+            <TituloSecao titulo="Álbuns recentes" descricao="Os últimos álbuns adicionados ao catálogo." acao={{ href: "/albuns", rotulo: "Ver todos" }} />
             {albuns.itens.length === 0 ? (
               <EstadoVazio titulo="O catálogo ainda está vazio" texto="Os álbuns aparecem aqui assim que forem cadastrados." />
             ) : (
@@ -214,7 +228,7 @@ export default async function Home() {
         <section id="rankings" className="scroll-mt-32 border-t border-white/5 bg-neutral-950/40 px-5 py-14 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-7xl space-y-12">
             <div>
-              <TituloSecao titulo="Mais bem avaliados" descricao="Álbuns com as melhores médias da comunidade." acao={{ href: "/musica?tipo=album&ordem=melhores", rotulo: "Ver todos" }} />
+              <TituloSecao titulo="Mais bem avaliados" descricao="Álbuns com as melhores médias da comunidade." acao={{ href: "/albuns?ordem=melhores", rotulo: "Ver todos" }} />
               {ranking.length === 0 ? (
                 <EstadoVazio titulo="O ranking ainda não existe" texto="Um álbum entra no ranking quando recebe avaliações suficientes da comunidade." />
               ) : (
@@ -224,7 +238,7 @@ export default async function Home() {
 
             {artistas.itens.length > 0 && (
               <div>
-                <TituloSecao titulo="Artistas" acao={{ href: "/musica?tipo=artista", rotulo: "Ver todos" }} />
+                <TituloSecao titulo="Artistas" acao={{ href: "/artistas", rotulo: "Ver todos" }} />
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">{artistas.itens.map((a) => <CartaoArtista key={a.idArtista} artista={a} />)}</div>
               </div>
             )}

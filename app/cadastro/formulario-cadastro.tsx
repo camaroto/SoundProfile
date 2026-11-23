@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import CampoTexto from "@/app/components/campo-texto";
+import BotaoGoogle, { SeparadorOu } from "@/app/components/botao-google";
 import { cadastrarUsuario, type EstadoCadastro } from "./actions";
 
 const estadoInicial: EstadoCadastro = {
@@ -80,6 +81,9 @@ export default function FormularioCadastro() {
       >
         {pendente ? "Criando conta..." : "Criar conta"}
       </button>
+
+      <SeparadorOu />
+      <BotaoGoogle rotulo="Criar conta com o Google" />
     </form>
   );
 }

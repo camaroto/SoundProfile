@@ -5,7 +5,8 @@ import { buscarMusica } from "@/lib/catalogo";
 import { carregarDadosItem } from "@/lib/pagina-item";
 import { obterUsuarioLogado } from "@/lib/sessao";
 import { ColunaAvaliacao, SecaoAvaliacoes } from "@/app/components/avaliacoes";
-import { ChipsGenero, Container, HeroItem, MediaDestaque, TituloSecao } from "@/app/components/ui";
+import BotaoPreview from "@/app/components/preview/botao-preview";
+import { botaoPrimario, ChipsGenero, Container, HeroItem, MediaDestaque, TituloSecao } from "@/app/components/ui";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,9 +37,13 @@ export default async function MusicaPage({ params }: Props) {
         <div className="mt-3"><ChipsGenero generos={musica.generos} /></div>
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
           <MediaDestaque media={dados.stats.media} total={dados.stats.total} />
-          <a href="#sua-avaliacao" className="rounded-lg bg-violet-600 px-4 py-3 text-sm font-semibold transition hover:bg-violet-500">
+          <a href="#sua-avaliacao" className={`${botaoPrimario} px-5 py-2.5`}>
             {dados.minha ? "Ver sua avaliação" : "Avaliar esta música"}
           </a>
+          <span className="flex items-center gap-3 text-sm text-white/55">
+            <BotaoPreview titulo={musica.titulo} artista={musica.artista} />
+            Prévia de 30 segundos
+          </span>
         </div>
       </HeroItem>
 

@@ -45,14 +45,22 @@ public class SecurityConfig {
                 .logout(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(a -> a
-                        .requestMatchers("/api/auth/cadastro", "/api/auth/login", "/api/auth/verificar-email",
-                                "/api/auth/reenviar-codigo", "/api/saude")
+                        .requestMatchers(
+                                "/api/auth/cadastro",
+                                "/api/auth/login",
+                                "/api/auth/verificar-email",
+                                "/api/auth/reenviar-codigo",
+                                "/api/auth/google",
+                                "/api/auth/google/username-disponivel",
+                                "/api/auth/google/finalizar",
+                                "/api/saude")
                         .permitAll()
                         // Leitura pública (perfis e imagens); escrita sempre exige login.
                         .requestMatchers(HttpMethod.GET,
                                 "/api/perfis/**",
                                 "/api/imagens/**",
-                                "/api/spotify/**")
+                                "/api/spotify/**",
+                                "/api/preview")
                         .permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())

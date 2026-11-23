@@ -48,7 +48,7 @@ export default function IndicadorSocial() {
       >
         <IconeChat className="h-5 w-5" />
         {mensagens > 0 && (
-          <span aria-hidden="true" className="absolute -right-0.5 -top-0.5 min-w-[18px] rounded-full bg-violet-500 px-1 text-center text-[10px] font-bold leading-[18px] text-white ring-2 ring-neutral-950">
+          <span aria-hidden="true" className="absolute -right-0.5 -top-0.5 min-w-[18px] rounded-full bg-violet-500 px-1 text-center text-[10px] font-bold leading-[18px] text-white ring-2 ring-[#2e1065]">
             {mensagens > 99 ? "99+" : mensagens}
           </span>
         )}

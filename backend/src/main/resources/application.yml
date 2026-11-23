@@ -33,6 +33,10 @@ app:
     # Em produção, sem serviço de e-mail configurado o cadastro falha. Em desenvolvimento, o código vai para o log.
     modo-desenvolvimento: ${EMAIL_MODO_DEV:true}
 
+google:
+  client-id: ${GOOGLE_CLIENT_ID:}
+  client-secret: ${GOOGLE_CLIENT_SECRET:}
+
 spotify:
   client-id: ${SPOTIFY_CLIENT_ID}
   client-secret: ${SPOTIFY_CLIENT_SECRET}

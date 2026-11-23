@@ -62,15 +62,15 @@ export default function SinoNotificacoes({ naoLidas, aoLer }: { naoLidas: number
       >
         <IconeSino className="h-5 w-5" />
         {naoLidas > 0 && (
-          <span aria-hidden="true" className="absolute -right-0.5 -top-0.5 min-w-[18px] rounded-full bg-violet-500 px-1 text-center text-[10px] font-bold leading-[18px] text-white ring-2 ring-neutral-950">
+          <span aria-hidden="true" className="absolute -right-0.5 -top-0.5 min-w-[18px] rounded-full bg-violet-500 px-1 text-center text-[10px] font-bold leading-[18px] text-white ring-2 ring-[#2e1065]">
             {naoLidas > 99 ? "99+" : naoLidas}
           </span>
         )}
       </button>
 
       {aberto && (
-        <div role="dialog" aria-label="Notificações" className="fixed inset-x-3 top-16 z-50 max-h-[70vh] overflow-y-auto rounded-2xl border border-white/10 bg-[#14121c] shadow-2xl shadow-black/60 sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-2 sm:w-96">
-          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+        <div role="dialog" aria-label="Notificações" className="fixed inset-x-3 top-16 z-50 max-h-[70vh] overflow-y-auto rounded-2xl border border-[#2e1065] bg-[#14121c] shadow-2xl shadow-black/60 sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-2 sm:w-96">
+          <div className="flex items-center justify-between border-b border-[#2e1065] px-4 py-3">
             <h2 className="text-sm font-semibold">Notificações</h2>
             <Link href="/social/notificacoes" onClick={() => setAberto(false)} className="text-xs font-medium text-violet-300 hover:underline">Ver todas</Link>
           </div>
@@ -87,7 +87,7 @@ export default function SinoNotificacoes({ naoLidas, aoLer }: { naoLidas: number
           ) : (
             <ul>
               {itens.map((i) => (
-                <li key={i.id} className="border-b border-white/[0.06] last:border-0">
+                <li key={i.id} className="border-b border-[#2e1065]/60 last:border-0">
                   <Link
                     href={`/perfil/${i.username}`}
                     onClick={() => setAberto(false)}

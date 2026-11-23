@@ -273,7 +273,7 @@ export default function ChatCliente({ idConversa, euId, outro, iniciais, temMais
                           className={`whitespace-pre-wrap break-words rounded-2xl px-3.5 py-2 text-[15px] leading-6 ${
                             meu
                               ? `rounded-br-md bg-violet-600 text-white ${m.status === "erro" ? "opacity-60 ring-1 ring-red-400" : ""} ${m.status === "enviando" ? "opacity-70" : ""}`
-                              : "rounded-bl-md border border-white/10 bg-white/[0.06] text-white/90"
+                              : "rounded-bl-md border border-[#2e1065] bg-white/[0.06] text-white/90"
                           }`}
                         >
                           {m.texto}

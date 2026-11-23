@@ -7,7 +7,7 @@ export type CamposCadastro = {
 export type ErrosCadastro = Partial<Record<keyof CamposCadastro, string>>;
 
 // Nomes que conflitam com rotas do site.
-const RESERVADOS = ["editar", "exemplo", "admin", "api", "login", "cadastro", "sair", "perfil"];
+const RESERVADOS = ["editar", "personalizar", "exemplo", "admin", "api", "login", "cadastro", "sair", "perfil"];
 
 const USERNAME = /^[a-zA-Z0-9_.]{3,20}$/;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

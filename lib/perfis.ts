@@ -54,19 +54,31 @@ export async function buscarPerfil(username: string): Promise<Perfil | null> {
 // Para cada imagem: undefined = manter, null = remover, Buffer = trocar.
 export type MudancaImagem = Buffer | null | undefined;
 
+// Aba "Perfil": só os textos.
 export type DadosPerfil = {
   nomeExibicao: string | null;
   localizacao: string | null;
   biografia: string;
+};
+
+export async function atualizarDadosPerfil(idUsuario: number, dados: DadosPerfil): Promise<void> {
+  await query(
+    "UPDATE Perfil SET nomeExibicao = $2, localizacao = $3, biografia = $4 WHERE idUsuario = $1",
+    [idUsuario, dados.nomeExibicao, dados.localizacao, dados.biografia],
+  );
+}
+
+// Aba "Personalização": foto, banner, moldura e balão.
+export type DadosPersonalizacao = {
   avatar: MudancaImagem;
   banner: MudancaImagem;
   moldura: IdMoldura | null;
   balao: IdBalao | null;
 };
 
-// Tudo numa transação: ou o perfil inteiro é atualizado, ou nada muda.
+// Tudo numa transação: ou a personalização inteira é atualizada, ou nada muda.
 // As imagens antigas são apagadas para não acumular lixo no banco.
-export async function atualizarPerfil(idUsuario: number, dados: DadosPerfil): Promise<void> {
+export async function atualizarPersonalizacao(idUsuario: number, dados: DadosPersonalizacao): Promise<void> {
   await transacao(async (client) => {
     const atual = (
       await client.query<{ avatar: string | null; banner: string | null }>(
@@ -89,11 +101,8 @@ export async function atualizarPerfil(idUsuario: number, dados: DadosPerfil): Pr
     }
 
     await client.query(
-      `UPDATE Perfil
-          SET nomeExibicao = $2, localizacao = $3, biografia = $4, avatar = $5, banner = $6,
-              moldura = $7, balao = $8
-        WHERE idUsuario = $1`,
-      [idUsuario, dados.nomeExibicao, dados.localizacao, dados.biografia, avatar, banner, dados.moldura, dados.balao],
+      "UPDATE Perfil SET avatar = $2, banner = $3, moldura = $4, balao = $5 WHERE idUsuario = $1",
+      [idUsuario, avatar, banner, dados.moldura, dados.balao],
     );
 
     for (const url of antigas) {
