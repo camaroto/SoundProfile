@@ -47,7 +47,7 @@ public class DeezerClient {
     public List<FaixaDeezer> buscarFaixas(String titulo, String artista) {
         List<FaixaDeezer> faixas = new ArrayList<>();
         try {
-            String consulta = "artist:\"" + artista.replace("\"", " ") + "\" track:\"" + titulo.replace("\"", " ") + "\"";
+            String consulta = artista + " " + titulo;
             JsonNode resposta = http.get()
                 .uri(b -> b.path("/search").queryParam("q", "{q}").queryParam("limit", 5).build(Map.of("q", consulta)))
                 .retrieve()
